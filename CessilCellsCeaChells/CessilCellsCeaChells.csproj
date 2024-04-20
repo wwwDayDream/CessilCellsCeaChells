@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="./CessilCellsCeaChells.Packaging.targets" />
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.1;net472</TargetFrameworks>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+
+        <!-- BepInEx Properties -->
+        <AssemblyName>CessilCellsCeaChells</AssemblyName>
+        <Product>CessilCellsCeaChells</Product>
+        
+        <!-- Project Properties -->
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>CessilCellsCeaChells</RootNamespace>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        
+        <!-- Enable Nullable for better IDE null-checking -->
+        <Nullable>enable</Nullable>
+        
+        <!-- Set NuGet Sources -->
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        
+        <!-- Set MinVer Tag & Prerelease Properties -->
+        <MinVerDefaultPreReleaseIdentifiers>dev</MinVerDefaultPreReleaseIdentifiers>
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+        
+        <!-- Embed Debug Symbols for Easier Debugging -->
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>embedded</DebugType>
+        <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
+    </PropertyGroup>
+
+    <!-- Set Mod Version with MinVer -->
+    <Target Name="SetModVersion" BeforeTargets="AddGeneratedFile" DependsOnTargets="MinVer">
+        <PropertyGroup>
+            <PlainVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch)</PlainVersion>
+            <BepInExPluginVersion>$(PlainVersion)</BepInExPluginVersion>
+        </PropertyGroup>
+    </Target>
+    
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.*" PrivateAssets="all" IncludeAssets="all"/>
+        <PackageReference Include="MinVer" Version="4.*" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+    </ItemGroup>
+    
+    <!-- Copy output files -->
+    <Target Name="PostBuild" AfterTargets="Build" Condition="$(CI) != 'true'">
+        <Exec ContinueOnError="true" Command="copy &quot;$(OutputPath)/$(AssemblyName).dll&quot; &quot;$(CW_GAMEFILES)BepInEx/patchers/&quot;" />
+    </Target>
+    
+</Project>

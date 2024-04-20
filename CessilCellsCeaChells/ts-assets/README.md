@@ -1,0 +1,1 @@
+Allows installed plugins to request creation of Fields, Properties, and Methods in Managed DLLs.

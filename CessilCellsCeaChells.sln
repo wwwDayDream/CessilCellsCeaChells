@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells", "CessilCellsCeaChells\CessilCellsCeaChells.csproj", "{14B62494-88AB-48DE-978C-20DB17CD1525}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
