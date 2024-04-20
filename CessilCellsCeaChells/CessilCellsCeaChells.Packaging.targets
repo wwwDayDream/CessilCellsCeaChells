@@ -1,0 +1,36 @@
+<Project>
+    <PropertyGroup>
+        <PackageId>CessilCellsCeaChells</PackageId>
+        <Title>CessilCellsCeaChells</Title>
+        <Authors>www_Day_Dream</Authors>
+        <PackageTags>contentwarning; content; warning</PackageTags>
+
+        <PackageIcon>icon_128x128.png</PackageIcon>
+        <PackageReadmeFile>../README.md</PackageReadmeFile>
+        <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+
+        <PackageProjectUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <!-- NuPkg Includes -->
+    <ItemGroup>
+        <None Include="$(ProjectDir)../README.md" Pack="true" PackagePath="/" />
+        <None Include="$(ProjectDir)ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
+    </ItemGroup>
+
+    <!-- Pack for Thunderstore -->
+    <Target
+        Name="ThunderstorePack"
+        AfterTargets="PostBuildEvent"
+        Condition="$(Configuration) == 'Release' and $(CI) == 'true'"
+        DependsOnTargets="SetModVersion"
+    >
+        <Exec Command="dotnet tcli build --config-path $(ProjectDir)ts-assets/thunderstore.toml --package-version $(PlainVersion)" />
+        <ItemGroup>
+            <FilesToRename Include="$(ProjectDir)dist/*-$(PlainVersion).zip" />
+        </ItemGroup>
+        <Move SourceFiles="@(FilesToRename)" DestinationFiles="@(FilesToRename -&gt; Replace($(PlainVersion), $(MinVerVersion)))" />
+    </Target>
+</Project>
