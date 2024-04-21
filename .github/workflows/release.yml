@@ -27,7 +27,7 @@ jobs:
 
       - name: Pack Solution
         run: |
-          dotnet publish --configuration Release
+          dotnet pack --configuration Release
 
       - name: Build Debug
         run: |

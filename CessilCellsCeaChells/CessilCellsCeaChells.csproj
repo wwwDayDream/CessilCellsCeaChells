@@ -2,17 +2,14 @@
     <Import Project="./CessilCellsCeaChells.Packaging.targets" />
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.1;net472</TargetFrameworks>
-        <Nullable>enable</Nullable>
-        <LangVersion>latest</LangVersion>
 
         <!-- BepInEx Properties -->
         <AssemblyName>CessilCellsCeaChells</AssemblyName>
         <Product>CessilCellsCeaChells</Product>
         
         <!-- Project Properties -->
-        <TargetFramework>netstandard2.1</TargetFramework>
         <RootNamespace>CessilCellsCeaChells</RootNamespace>
+        <TargetFrameworks>netstandard2.1;net472</TargetFrameworks>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         

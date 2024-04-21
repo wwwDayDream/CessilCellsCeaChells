@@ -6,7 +6,7 @@
         <PackageTags>contentwarning; content; warning</PackageTags>
 
         <PackageIcon>icon_128x128.png</PackageIcon>
-        <PackageReadmeFile>../README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
 
         <PackageProjectUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</PackageProjectUrl>
@@ -16,7 +16,7 @@
 
     <!-- NuPkg Includes -->
     <ItemGroup>
-        <None Include="$(ProjectDir)../README.md" Pack="true" PackagePath="/" />
+        <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="/" />
         <None Include="$(ProjectDir)ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
     </ItemGroup>
 
