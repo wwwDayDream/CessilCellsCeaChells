@@ -6,7 +6,6 @@
 [![Thunderstore Package Version](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%233498db)](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
 
 [![Nuget Download Count](https://img.shields.io/nuget/dt/CessilCellsCeaChells?style=plastic&logo=nuget&color=%23edac38)](https://www.nuget.org/packages/CessilCellsCeaChells)
-[![Thunderstore Download Count](https://img.shields.io/thunderstore/dt/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23edac38)](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
 </div>
 Allows installed plugins to request creation of Fields, Properties, and Methods in Managed DLLs.
 
