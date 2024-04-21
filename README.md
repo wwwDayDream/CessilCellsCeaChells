@@ -1,12 +1,18 @@
 <div align="center">
 
 ## CessilCellsCeaChells
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/wwwDayDream/CessilCellsCeaChells/build.yml?style=plastic&logo=github)
-![Nuget Package Version](https://img.shields.io/nuget/v/CessilCellsCeaChells?style=plastic&logo=nuget&color=%234dc421)
-![Thunderstore Package Version](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%234dc421)
 
-![Nuget Download Count](https://img.shields.io/nuget/dt/CessilCellsCeaChells?style=plastic&logo=nuget&color=%23edac38)
-![Thunderstore Download Count](https://img.shields.io/thunderstore/dt/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23edac38)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/wwwDayDream/CessilCellsCeaChells/build.yml?style=plastic&logo=github)
+<a href="https://www.nuget.org/packages/CessilCellsCeaChells" target="_blank">
+![Nuget Package Version](https://img.shields.io/nuget/v/CessilCellsCeaChells?style=plastic&logo=nuget&color=%23004880)</a>
+<a href="https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/" target="_blank">
+![Thunderstore Package Version](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%233498db)</a>
+
+<a href="https://www.nuget.org/packages/CessilCellsCeaChells" target="_blank">
+
+![Nuget Download Count](https://img.shields.io/nuget/dt/CessilCellsCeaChells?style=plastic&logo=nuget&color=%23edac38)</a>
+<a href="https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/" target="_blank">
+![Thunderstore Download Count](https://img.shields.io/thunderstore/dt/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23edac38)</a>
 </div>
 Allows installed plugins to request creation of Fields, Properties, and Methods in Managed DLLs.
 
