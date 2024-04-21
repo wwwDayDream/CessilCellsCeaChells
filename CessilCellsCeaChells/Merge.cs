@@ -4,18 +4,18 @@ using Mono.Cecil;
 
 namespace CessilCellsCeaChells;
 
-public class Merge {
-    public enum MergeType { Field, Property, Method }
-    public TypeReference TargetTypeReference;
-    public string TargetAssemblyName => TargetTypeReference.Resolve().Module.Assembly.Name.Name + ".dll";
+internal class Merge {
+    internal enum MergeType { Field, Property, Method }
+    internal TypeReference TargetTypeReference;
+    internal string TargetAssemblyName => TargetTypeReference.Resolve().Module.Assembly.Name.Name + ".dll";
     
-    public string Identifer;
-    public TypeReference IdType;
-    public MergeType Type;
+    internal string Identifer;
+    internal TypeReference IdType;
+    internal MergeType Type;
 
-    public TypeReference[] AdditionalTypeParameters = [];
+    internal TypeReference[] AdditionalTypeParameters = [];
 
-    public Merge(CustomAttribute attribute)
+    internal Merge(CustomAttribute attribute)
     {
         TargetTypeReference = (TypeReference)attribute.ConstructorArguments[0].Value;
         Identifer = (string)attribute.ConstructorArguments[1].Value;
@@ -35,7 +35,7 @@ public class Merge {
         }
     }
     
-    public static bool TryCreateMerges(AssemblyDefinition assemblyDefinition, out Merge[] merges)
+    internal static bool TryCreateMerges(AssemblyDefinition assemblyDefinition, out Merge[] merges)
     {
         merges = assemblyDefinition.CustomAttributes
             .Where(attr =>

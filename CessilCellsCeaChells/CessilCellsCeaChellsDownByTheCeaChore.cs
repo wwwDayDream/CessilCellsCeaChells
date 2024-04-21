@@ -9,7 +9,7 @@ using Mono.Cecil.Cil;
 
 namespace CessilCellsCeaChells;
 
-public static class CessilCellsCeaChellsDownByTheCeaChore {
+internal static class CessilCellsCeaChellsDownByTheCeaChore {
     public static IEnumerable<string> TargetDLLs => Merges.Select(merge => merge.TargetAssemblyName).Distinct();
     public static void Patch(AssemblyDefinition assembly) => PatchTargetAssembly(assembly);
     public static ManualLogSource Logger { get; } = BepInEx.Logging.Logger.CreateLogSource(nameof(CessilCellsCeaChellsDownByTheCeaChore));
