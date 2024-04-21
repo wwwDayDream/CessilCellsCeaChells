@@ -3,7 +3,7 @@
         <PackageId>CessilCellsCeaChells</PackageId>
         <Title>CessilCellsCeaChells</Title>
         <Authors>www_Day_Dream</Authors>
-        <PackageTags>contentwarning; content; warning</PackageTags>
+        <PackageTags>bepinex; unitymod; contentwarning;</PackageTags>
 
         <PackageIcon>icon_128x128.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -16,7 +16,7 @@
 
     <!-- NuPkg Includes -->
     <ItemGroup>
-        <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="/" />
+        <None Include="$(ProjectDir)ts-assets/README.md" Pack="true" PackagePath="/" />
         <None Include="$(ProjectDir)ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
     </ItemGroup>
 
