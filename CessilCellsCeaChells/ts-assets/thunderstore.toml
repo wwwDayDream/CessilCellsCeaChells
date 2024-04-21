@@ -27,7 +27,8 @@ source = "../bin/Release/netstandard2.1/CessilCellsCeaChells.dll"
 target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
-communities = [ "content-warning" ]
+communities = [ "content-warning", "lethal-company" ]
 [publish.categories]
 content-warning = [ "libraries" ]
+lethal-company = [ "libraries" ]
 # For a list of valid tags, look at the slug values in https://thunderstore.io/api/experimental/community/content-warning/category/
