@@ -23,4 +23,4 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 - Create a pull request with the implementation into the [TCLI TOML](https://github.com/wwwDayDream/CessilCellsCeaChells/blob/master/CessilCellsCeaChells/ts-assets/thunderstore.toml).
 
 ### Version Compatability
-[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.*
+[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.21
