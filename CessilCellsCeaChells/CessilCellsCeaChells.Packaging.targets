@@ -24,7 +24,7 @@
     <Target
         Name="ThunderstorePack"
         AfterTargets="PostBuildEvent"
-        Condition="$(Configuration) == 'Release' and $(CI) == 'true'"
+        Condition="$(Configuration) == 'Release' and $(CI) == 'true' and $(TargetFramework.TrimEnd(`0123456789`))' != 'net'"
         DependsOnTargets="SetModVersion"
     >
         <Exec Command="dotnet tcli build --config-path $(ProjectDir)ts-assets/thunderstore.toml --package-version $(PlainVersion)" />
