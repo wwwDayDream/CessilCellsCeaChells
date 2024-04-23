@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using BepInEx;
 using BepInEx.Bootstrap;
+using CessilCellsCeaChells.Merges;
 using Mono.Cecil;
 
 namespace CessilCellsCeaChells;
@@ -10,7 +11,7 @@ internal static class AssemblyCacheHandler {
     private const string AssemblyCacheDLLPrefix = "CessilCache.";
     private static string CacheDir = Path.Combine(Paths.CachePath, nameof(CessilCellsCeaChellsDownByTheCeaChore));
     
-    internal static bool TryLoadCachedMerges(string assemblyPath, out Merge[] merges)
+    internal static bool TryLoadCachedMerges(string assemblyPath, out CessilMerge[] merges)
     {
         merges = [];
         if (!Directory.Exists(CacheDir)) Directory.CreateDirectory(CacheDir);
@@ -27,7 +28,7 @@ internal static class AssemblyCacheHandler {
             CessilCellsCeaChellsDownByTheCeaChore.Logger.LogDebug($"Loading and caching merges for '{assemblyDefinition.Name.Name}'. " + 
                                                                   (File.Exists(cachePath) ? "Write Time has changed." : "Cache doesn't exist."));
         
-        if (!Merge.TryCreateMerges(assemblyDefinition, out merges))
+        if (!CessilMerge.TryCreateMerges(assemblyDefinition, out merges))
             CessilCellsCeaChellsDownByTheCeaChore.Logger.LogDebug($"Plugin '{assemblyDefinition.Name.Name}' doesn't contain any merges.");
 
         if (!shouldUseCacheAssembly)
@@ -46,7 +47,7 @@ internal static class AssemblyCacheHandler {
         return assemblyDefinition;
     }
 
-    private static void CacheMerges(string cachePath, AssemblyDefinition assemblyDefinition, long writeTime, Merge[] merges)
+    private static void CacheMerges(string cachePath, AssemblyDefinition assemblyDefinition, long writeTime, CessilMerge[] merges)
     {
         if (File.Exists(cachePath)) File.Delete(cachePath);
 
