@@ -1,9 +1,12 @@
 <div align="center">
 
 ## CessilCellsCeaChells
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/wwwDayDream/CessilCellsCeaChells/build.yml?style=plastic&logo=github)]()
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/wwwDayDream/CessilCellsCeaChells/release.yml?style=plastic&logo=github&label=release)]()
 [![Nuget Package Version](https://img.shields.io/nuget/v/CessilCellsCeaChells?style=plastic&logo=nuget&color=%23004880)](https://www.nuget.org/packages/CessilCellsCeaChells)
 [![Thunderstore Package Version](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%233498db)](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
+
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/wwwDayDream/CessilCellsCeaChells/build.yml?style=plastic&logo=github&label=master)]()
+[![Github Commits Since Release](https://img.shields.io/github/commits-since/wwwDayDream/CessilCellsCeaChells/latest?style=plastic&logo=github&color=%23995500)]()
 </div>
 Allows installed plugins to request creation of Fields, Properties, and Methods in Managed DLLs.
 
