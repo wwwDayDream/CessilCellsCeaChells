@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using BepInEx;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -72,11 +73,18 @@ internal static class CessilMerger {
         if (typeDef.Properties.Any(prop => prop.Name == name)) return false;
         if (!TryCreateField(typeDef, $"<{name}>k__BackingField", importedPropType, out var fieldDef)) return false;
         
+        if (!typeDef.Module.TryGetTypeReference(typeof(CompilerGeneratedAttribute).FullName, out var compilerGeneratedAttrRef))
+            compilerGeneratedAttrRef = typeDef.Module.ImportReference(typeof(CompilerGeneratedAttribute));
+        var compilerGeneratedConstructor = typeDef.Module.ImportReference(compilerGeneratedAttrRef.Resolve().Methods.First(method => method.Name == ".ctor"));
+        
+        fieldDef.CustomAttributes.Add(new CustomAttribute(compilerGeneratedConstructor));
+        
         var getter = new MethodDefinition("get_" + name,
             MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
             importedPropType);
         typeDef.Methods.Add(getter);
         getter.Body = new MethodBody(getter);
+        getter.CustomAttributes.Add(new CustomAttribute(compilerGeneratedConstructor));
         var ilProcessor = getter.Body.GetILProcessor();
         ilProcessor.Emit(OpCodes.Ldarg_0);
         ilProcessor.Emit(OpCodes.Ldfld, fieldDef);
@@ -87,6 +95,7 @@ internal static class CessilMerger {
             typeDef.Module.Assembly.MainModule.TypeSystem.Void);
         typeDef.Methods.Add(setter);
         setter.Body = new MethodBody(setter);
+        setter.CustomAttributes.Add(new CustomAttribute(compilerGeneratedConstructor));
         setter.Parameters.Add(new ParameterDefinition("value", ParameterAttributes.None, importedPropType));
         ilProcessor = setter.Body.GetILProcessor();
         ilProcessor.Emit(OpCodes.Ldarg_0);
