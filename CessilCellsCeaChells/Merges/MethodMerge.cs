@@ -7,24 +7,15 @@ using Mono.Cecil.Rocks;
 
 namespace CessilCellsCeaChells.Merges;
 
-internal class MethodMerge : CessilMerge {
-    private readonly string MethodName;
-    private readonly TypeReference MethodType;
-    private readonly TypeReference[] MethodParameters;
-    private readonly object[] MethodDefaults;
-
-    public MethodMerge(CustomAttribute attribute)
-    {
-        TargetTypeRef = (TypeReference)attribute.ConstructorArguments[0].Value;
-        MethodName = (string)attribute.ConstructorArguments[1].Value;
-        MethodType = (TypeReference)attribute.ConstructorArguments[2].Value;
-        MethodParameters = ((CustomAttributeArgument[])attribute.ConstructorArguments[3].Value)
-            .Select(attr => (TypeReference)attr.Value).ToArray();
-        MethodDefaults = [ ];
-        if (attribute.ConstructorArguments.Count == 4) return;
-        MethodDefaults = ((CustomAttributeArgument[])attribute.ConstructorArguments[4].Value)
-            .Select(attr => attr.Value).ToArray();
-    }
+internal class MethodMerge(CustomAttribute attribute) : CessilMerge((TypeReference)attribute.ConstructorArguments[0].Value) {
+    private readonly string MethodName = 
+        (string)attribute.ConstructorArguments[1].Value;
+    private readonly TypeReference MethodType = 
+        (TypeReference)attribute.ConstructorArguments[2].Value;
+    private readonly TypeReference[] MethodParameters = 
+        ((CustomAttributeArgument[])attribute.ConstructorArguments[3].Value).Select(attr => (TypeReference)attr.Value).ToArray();
+    private readonly object[] MethodDefaults = attribute.ConstructorArguments.Count == 4 ? 
+        ((CustomAttributeArgument[])attribute.ConstructorArguments[4].Value).Select(attr => attr.Value).ToArray() : [];
 
     internal override CustomAttribute ConvertToAttribute(AssemblyDefinition into)
     {
