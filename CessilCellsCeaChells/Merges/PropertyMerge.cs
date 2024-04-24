@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CessilCellsCeaChells.CeaChore;
+using CessilCellsCeaChells.Internal;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Rocks;
