@@ -42,7 +42,7 @@ internal class PropertyMerge : CessilMerge {
         var importedPropertyType = GetOrImportTypeReference(typeDefinition.Module, PropertyType);
         if (!CessilHelper.TryCreateProperty(typeDefinition, PropertyName, importedPropertyType, out var fieldDef, out var propertyDefinition)) return false;
         if (InitializeOnAccess)
-            AddSingletonCheckToProperty(fieldDef, PropertyType.Resolve(), propertyDefinition);
+            AddSingletonCheckToProperty(fieldDef!, PropertyType.Resolve(), propertyDefinition!);
         memberDefinition = propertyDefinition;
         return true;
     }
