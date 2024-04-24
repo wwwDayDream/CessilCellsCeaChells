@@ -1,15 +1,12 @@
 using System;
+using CessilCellsCeaChells.Internal;
 
 namespace CessilCellsCeaChells.CeaChore;
 
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-public class RequiresFieldAttribute(Type targetType, string fieldName, Type fieldType) : Attribute;
+public class RequiresFieldAttribute(Type targetType, string fieldName, Type fieldType) : RequiresAttribute;
 
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-public class RequiresPropertyAttribute(Type targetType, string propertyName, Type propertyType, bool singletonCreateOnAccess = false) : Attribute;
+public class RequiresPropertyAttribute(Type targetType, string propertyName, Type propertyType, bool singletonCreateOnAccess = false) : RequiresAttribute;
 
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-public class RequiresMethodAttribute(Type targetType, string methodName, Type returnType, params Type[] arguments) : Attribute;
+public class RequiresMethodAttribute(Type targetType, string methodName, Type returnType, params Type[] arguments) : RequiresAttribute;
 
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-public class RequiresMethodDefaultsAttribute(Type targetType, string methodName, Type returnType, Type[] argumentTypes, object[] argumentDefaults) : Attribute;
+public class RequiresMethodDefaultsAttribute(Type targetType, string methodName, Type returnType, Type[] argumentTypes, object[] argumentDefaults) : RequiresAttribute;

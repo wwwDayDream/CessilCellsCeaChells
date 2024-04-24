@@ -5,7 +5,7 @@ using BepInEx.Bootstrap;
 using CessilCellsCeaChells.Merges;
 using Mono.Cecil;
 
-namespace CessilCellsCeaChells;
+namespace CessilCellsCeaChells.Internal;
 
 internal static class AssemblyCacheHandler {
     private const string AssemblyCacheDLLPrefix = "CessilCache.";

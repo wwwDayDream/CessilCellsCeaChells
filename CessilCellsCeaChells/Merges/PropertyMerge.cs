@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CessilCellsCeaChells.CeaChore;
+using CessilCellsCeaChells.Internal;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Rocks;
@@ -42,6 +43,7 @@ internal class PropertyMerge : CessilMerge {
         if (!CessilHelper.TryCreateProperty(typeDefinition, PropertyName, importedPropertyType, out var fieldDef, out var propertyDefinition)) return false;
         if (InitializeOnAccess)
             AddSingletonCheckToProperty(fieldDef, PropertyType.Resolve(), propertyDefinition);
+        memberDefinition = propertyDefinition;
         return true;
     }
     

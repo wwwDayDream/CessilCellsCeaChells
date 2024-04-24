@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace CessilCellsCeaChells;
+namespace CessilCellsCeaChells.Internal;
 
 internal static class CessilHelper {
     internal static bool TryCreateField(TypeDefinition typeDef, string name, TypeReference importedFieldType, out FieldDefinition? fieldDefinition)
