@@ -6,16 +6,9 @@ using Mono.Cecil;
 
 namespace CessilCellsCeaChells.Merges;
 
-internal class FieldMerge : CessilMerge {
-    private readonly string FieldName;
-    private readonly TypeReference FieldType;
-
-    public FieldMerge(CustomAttribute attribute)
-    {
-        TargetTypeRef = (TypeReference)attribute.ConstructorArguments[0].Value;
-        FieldName = (string)attribute.ConstructorArguments[1].Value;
-        FieldType = (TypeReference)attribute.ConstructorArguments[2].Value;
-    }
+internal class FieldMerge(CustomAttribute attribute) : CessilMerge((TypeReference)attribute.ConstructorArguments[0].Value) {
+    private readonly string FieldName = (string)attribute.ConstructorArguments[1].Value;
+    private readonly TypeReference FieldType = (TypeReference)attribute.ConstructorArguments[2].Value;
 
     internal override CustomAttribute ConvertToAttribute(AssemblyDefinition into)
     {

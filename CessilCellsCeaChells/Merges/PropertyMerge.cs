@@ -8,19 +8,11 @@ using Mono.Cecil.Rocks;
 
 namespace CessilCellsCeaChells.Merges;
 
-internal class PropertyMerge : CessilMerge {
-    private readonly string PropertyName;
-    private readonly TypeReference PropertyType;
-    private readonly bool InitializeOnAccess;
-
-    public PropertyMerge(CustomAttribute attribute)
-    {
-        TargetTypeRef = (TypeReference)attribute.ConstructorArguments[0].Value;
-        PropertyName = (string)attribute.ConstructorArguments[1].Value;
-        PropertyType = (TypeReference)attribute.ConstructorArguments[2].Value;
-        InitializeOnAccess = (bool)attribute.ConstructorArguments[3].Value;
-    }
-
+internal class PropertyMerge(CustomAttribute attribute) : CessilMerge((TypeReference)attribute.ConstructorArguments[0].Value) {
+    private readonly string PropertyName = (string)attribute.ConstructorArguments[1].Value;
+    private readonly TypeReference PropertyType = (TypeReference)attribute.ConstructorArguments[2].Value;
+    private readonly bool InitializeOnAccess = (bool)attribute.ConstructorArguments[3].Value;
+    
     internal override CustomAttribute ConvertToAttribute(AssemblyDefinition into)
     {
         var typeTypeRef = GetOrImportTypeReference(into.MainModule, typeof(Type));

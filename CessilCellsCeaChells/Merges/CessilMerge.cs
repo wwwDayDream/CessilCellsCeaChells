@@ -8,9 +8,9 @@ using Mono.Cecil;
 
 namespace CessilCellsCeaChells.Merges;
 
-internal abstract class CessilMerge {
+internal abstract class CessilMerge(TypeReference targetTypeRef) {
     internal string TargetAssemblyName => TargetTypeRef.Resolve().Module.Assembly.Name.Name + ".dll";
-    internal TypeReference TargetTypeRef;
+    internal TypeReference TargetTypeRef = targetTypeRef;
 
     private static Dictionary<string, Type> CessilMergeTypes = new Dictionary<string, Type>() {
         { typeof(RequiresFieldAttribute).FullName, typeof(FieldMerge) },
