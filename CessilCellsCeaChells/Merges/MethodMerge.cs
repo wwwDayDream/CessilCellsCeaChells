@@ -14,7 +14,7 @@ internal class MethodMerge(CustomAttribute attribute) : CessilMerge((TypeReferen
         (TypeReference)attribute.ConstructorArguments[2].Value;
     private readonly TypeReference[] MethodParameters = 
         ((CustomAttributeArgument[])attribute.ConstructorArguments[3].Value).Select(attr => (TypeReference)attr.Value).ToArray();
-    private readonly object[] MethodDefaults = attribute.ConstructorArguments.Count == 4 ? 
+    private readonly object[] MethodDefaults = attribute.ConstructorArguments.Count > 4 ? 
         ((CustomAttributeArgument[])attribute.ConstructorArguments[4].Value).Select(attr => attr.Value).ToArray() : [];
 
     internal override CustomAttribute ConvertToAttribute(AssemblyDefinition into)
