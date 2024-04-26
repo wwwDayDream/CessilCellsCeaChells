@@ -61,7 +61,7 @@ internal static class CessilCellsCeaChellsDownByTheCeaChore {
         
         if (!Directory.Exists(Paths.CachePath)) Directory.CreateDirectory(Paths.CachePath);
 
-        var outputPath = Path.Combine(Paths.CachePath, $"Cessil." + assembly.Name.Name + ".dll");
+        var outputPath = Path.Combine(Paths.CachePath, "Cessil." + assembly.Name.Name + ".dll");
         assembly.Write(outputPath);
 
         Logger.LogInfo($"Patching '{assembly.Name.Name}' done! Cached to '{outputPath.Replace(Paths.GameRootPath, ".")}'");
