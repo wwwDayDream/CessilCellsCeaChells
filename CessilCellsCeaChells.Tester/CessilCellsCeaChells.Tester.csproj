@@ -8,7 +8,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <Reference Include="../CessilCellsCeaChells/bin/Release/net35/CessilCellsCeaChells.dll"/>
+        <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj"/>
         
         <PackageReference Include="Mono.Cecil" Version="0.10.4" PrivateAssets="all"/>
         <PackageReference Include="CommandLineParser" Version="2.9.1" PrivateAssets="all"/>
