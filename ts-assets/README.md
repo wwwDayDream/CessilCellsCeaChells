@@ -14,4 +14,4 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 - Injecting Public Methods on any type in `/Game_Data/Managed/*.dll` with any parameters and/or return type.
 
 ### Version Compatability
-[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.*
+[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.21

@@ -16,21 +16,7 @@
 
     <!-- NuPkg Includes -->
     <ItemGroup>
-        <None Include="$(ProjectDir)ts-assets/README.md" Pack="true" PackagePath="/" />
-        <None Include="$(ProjectDir)ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
+        <None Include="$(ProjectDir)../ts-assets/README.md" Pack="true" PackagePath="/" />
+        <None Include="$(ProjectDir)../ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
     </ItemGroup>
-
-    <!-- Pack for Thunderstore -->
-    <Target
-        Name="ThunderstorePack"
-        AfterTargets="PostBuildEvent"
-        Condition="$(Configuration) == 'Release' and $(CI) == 'true' and '$(TargetFramework.TrimEnd(`0123456789`))' != 'net'"
-        DependsOnTargets="SetModVersion"
-    >
-        <Exec Command="dotnet tcli build --config-path $(ProjectDir)ts-assets/thunderstore.toml --package-version $(PlainVersion)" />
-        <ItemGroup>
-            <FilesToRename Include="$(ProjectDir)dist/*-$(PlainVersion).zip" />
-        </ItemGroup>
-        <Move SourceFiles="@(FilesToRename)" DestinationFiles="@(FilesToRename -&gt; Replace($(PlainVersion), $(MinVerVersion)))" />
-    </Target>
 </Project>

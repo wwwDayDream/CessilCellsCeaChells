@@ -2,76 +2,54 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using BepInEx;
-using BepInEx.Logging;
 using CessilCellsCeaChells.Internal;
 using CessilCellsCeaChells.Merges;
 using Mono.Cecil;
 
 namespace CessilCellsCeaChells;
 
-internal static class CessilCellsCeaChellsDownByTheCeaChore {
-    public static IEnumerable<string> TargetDLLs => Merges.Select(merge => merge.TargetAssemblyName).Distinct();
-
-    public static ManualLogSource Logger { get; } = BepInEx.Logging.Logger.CreateLogSource(nameof(CessilCellsCeaChellsDownByTheCeaChore));
-
-    public static List<CessilMerge> Merges { get; } = [ ];
-
-    public static List<AssemblyDefinition> AssembliesToDispose = [ ];
+public class CessilMerger : IDisposable {
+    public static event Action<object>? LogDebug;
+    public static event Action<object>? LogWarn;
+    public static void LogDebugSafe(object o) => LogDebug?.Invoke(o);
+    public static void LogWarnSafe(object o) => LogWarn?.Invoke(o);
     
-    public static void Initialize()
-    {
-        Logger.LogInfo("Initialized!");
+    public IAssemblyResolver? TypeResolver { get; set; }
+    public string CachePath { get; set; } = Path.GetDirectoryName(typeof(CessilMerger).Assembly.Location) ?? "";
+    public IEnumerable<string> TargetDLLFileNames => Merges.Select(merge => merge.TargetAssemblyName).Distinct();
+    public readonly List<AssemblyDefinition> AssembliesToDispose = [ ];
 
-        LoadPlugins();
+    private List<CessilMerge> Merges { get; } = [ ];
+
+    public bool LoadMergesFrom(string dllPath, out int count)
+    {
+        count = 0;
+        if (!AssemblyCacheHandler.TryLoadCachedMerges(dllPath, this, out var merges)) return false;
+        Merges.AddRange(merges);
+        count = merges.Length;
+        return true;
     }
 
-    private static void LoadPlugins()
+    public void MergeInto(AssemblyDefinition assembly)
     {
-        var bepInExPlugins = Paths.PluginPath ?? "";
-        if (!Directory.Exists(bepInExPlugins))
-            throw new ArgumentException("Invalid plugin directory!", bepInExPlugins);
-        
-        foreach (var potentialAssemblySource in Directory.GetFiles(bepInExPlugins, "*.dll", SearchOption.AllDirectories))
-        {
-            if (!AssemblyCacheHandler.TryLoadCachedMerges(potentialAssemblySource, out var merges)) continue;
-            
-            Logger.LogInfo($"Successfully loaded {merges.Length} merge{(merges.Length == 1 ? "" : "s")} from '{Path.GetFileName(potentialAssemblySource)}'");
-            Merges.AddRange(merges);
-        }
-    }
-
-    public static void Patch(AssemblyDefinition assembly)
-    {
-        Logger.LogInfo($"Patching '{assembly.Name.Name}'..");
-
         foreach (var merge in Merges.Where(merge => merge.TargetAssemblyName == assembly.Name.Name + ".dll"))
         {
             var targetType = assembly.MainModule.GetType(merge.TargetTypeRef.FullName);
             if (targetType == null)
             {
-                Logger.LogWarning($"Disregarding merge as it's target type doesn't exist!");
+                LogWarnSafe("Disregarding merge as it's target type doesn't exist!");
                 continue;
             }
-            if (merge.TryMergeInto(targetType, out var memberDef))
-            {
-                Logger.LogDebug($"Successfully merged '{memberDef?.FullName}' into '{targetType.FullName}'");
-            }
+            if (!merge.TryMergeInto(targetType, out var memberDef)) continue;
+            
+            LogDebugSafe($"Successfully merged '{memberDef?.FullName}' into '{targetType.FullName}'");
         }
-        
-        if (!Directory.Exists(Paths.CachePath)) Directory.CreateDirectory(Paths.CachePath);
-
-        var outputPath = Path.Combine(Paths.CachePath, "Cessil." + assembly.Name.Name + ".dll");
-        assembly.Write(outputPath);
-
-        Logger.LogInfo($"Patching '{assembly.Name.Name}' done! Cached to '{outputPath.Replace(Paths.GameRootPath, ".")}'");
     }
     
-    public static void Finish()
+    public void Dispose()
     {
+        LogDebugSafe("Disposing of loaded AssemblyDefinitions..");
         foreach (var assemblyDefinition in AssembliesToDispose)
             assemblyDefinition.Dispose();
-        
-        Logger.LogInfo("Finished!");
     }
 }

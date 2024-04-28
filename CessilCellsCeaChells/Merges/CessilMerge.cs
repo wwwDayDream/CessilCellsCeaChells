@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using CessilCellsCeaChells.CeaChore;
 using Mono.Cecil;
 
@@ -10,9 +8,9 @@ namespace CessilCellsCeaChells.Merges;
 
 internal abstract class CessilMerge(TypeReference targetTypeRef) {
     internal string TargetAssemblyName => TargetTypeRef.Resolve().Module.Assembly.Name.Name + ".dll";
-    internal TypeReference TargetTypeRef = targetTypeRef;
+    internal readonly TypeReference TargetTypeRef = targetTypeRef;
 
-    private static Dictionary<string, Type> CessilMergeTypes = new Dictionary<string, Type>() {
+    private static readonly Dictionary<string, Type> CessilMergeTypes = new Dictionary<string, Type>() {
         { typeof(RequiresFieldAttribute).FullName, typeof(FieldMerge) },
         { typeof(RequiresPropertyAttribute).FullName, typeof(PropertyMerge) },
         { typeof(RequiresMethodAttribute).FullName, typeof(MethodMerge) },
@@ -21,9 +19,9 @@ internal abstract class CessilMerge(TypeReference targetTypeRef) {
     internal static bool TryCreateMerges(AssemblyDefinition assembly, out CessilMerge[] merges)
     {
         merges = assembly.CustomAttributes
-            .Select(customAttribute => (isMerge: TryConvertFrom(customAttribute, out var merge), merge))
-            .Where(tuple => tuple.isMerge)
-            .Select(tuple => tuple.merge!).ToArray();
+            .Select(customAttribute => new KeyValuePair<bool, CessilMerge?>(TryConvertFrom(customAttribute, out var merge), merge))
+            .Where(tuple => tuple.Key)
+            .Select(tuple => tuple.Value!).ToArray();
         return merges.Length > 0;
     }
 

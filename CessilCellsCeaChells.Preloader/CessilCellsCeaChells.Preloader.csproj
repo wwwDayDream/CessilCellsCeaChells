@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="./CessilCellsCeaChells.Preloader.Packaging.targets" />
+
+    <!-- Set Mod Version with MinVer -->
+    <Target Name="SetModVersion" BeforeTargets="AddGeneratedFile" DependsOnTargets="MinVer">
+        <PropertyGroup>
+            <PlainVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch)</PlainVersion>
+            <BepInExPluginVersion>$(PlainVersion)</BepInExPluginVersion>
+        </PropertyGroup>
+    </Target>
+
+    <!-- Project Properties -->
+    <PropertyGroup>
+        <TargetFramework>net35</TargetFramework>
+        <AssemblyName>CessilCellsCeaChells.Preloader</AssemblyName>
+        <Product>CessilCellsCeaChells.Preloader</Product>
+        <RootNamespace>CessilCellsCeaChells.Preloader</RootNamespace>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+
+        <MinVerDefaultPreReleaseIdentifiers>dev</MinVerDefaultPreReleaseIdentifiers>
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>embedded</DebugType>
+        <!--
+        Trim the project path to prevent players from potentially
+        viewing Private Information in stack traces.
+        -->
+        <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
+    </PropertyGroup>
+
+    <!-- Primary Package References -->
+    <ItemGroup>
+        <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj"/>
+        
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*" PrivateAssets="all"/>
+        <PackageReference Include="MinVer" Version="4.*" PrivateAssets="all"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="all"/>
+        
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+    </ItemGroup>
+</Project>

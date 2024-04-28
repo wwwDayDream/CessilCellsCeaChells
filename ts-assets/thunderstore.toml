@@ -19,11 +19,15 @@ readme = "README.md"
 outdir = "../dist"
 
 [[build.copy]]
-source = "../../LICENSE"
+source = "../LICENSE"
 target = "/"
 
 [[build.copy]]
-source = "../bin/Release/netstandard2.1/CessilCellsCeaChells.dll"
+source = "../CessilCellsCeaChells.Preloader/bin/Release/net35/CessilCellsCeaChells.dll"
+target = "/BepInEx/patchers/CessilCellsCeaChells/"
+
+[[build.copy]]
+source = "../CessilCellsCeaChells.Preloader/bin/Release/net35/CessilCellsCeaChells.Preloader.dll"
 target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
