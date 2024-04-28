@@ -26,19 +26,19 @@ jobs:
           dotnet restore
           dotnet tool restore
 
-      - name: Pack Solution
+      - name: Pack CessilCellsCeaChells
         run: |
-          dotnet pack --configuration Release
+          dotnet pack CessilCellsCeaChells/CessilCellsCeaChells.csproj --configuration Release
 
-      - name: Build Debug
+      - name: Build CessilCellsCeaChells.Preloader
         run: |
-          dotnet build --configuration Debug
+          dotnet build CessilCellsCeaChells.Preloader/CessilCellsCeaChells.Preloader.csproj --configuration Release
 
       - name: Upload Thunderstore Artifact
         uses: actions/upload-artifact@v4
         with:
           name: thunderstore-build
-          path: CessilCellsCeaChells/dist/*.zip
+          path: dist/*.zip
 
       - name: Upload NuPkg Artifact
         uses: actions/upload-artifact@v4

@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells", "CessilCellsCeaChells\CessilCellsCeaChells.csproj", "{14B62494-88AB-48DE-978C-20DB17CD1525}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.Preloader", "CessilCellsCeaChells.Preloader\CessilCellsCeaChells.Preloader.csproj", "{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.Tester", "CessilCellsCeaChells.Tester\CessilCellsCeaChells.Tester.csproj", "{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{14B62494-88AB-48DE-978C-20DB17CD1525}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14B62494-88AB-48DE-978C-20DB17CD1525}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14B62494-88AB-48DE-978C-20DB17CD1525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

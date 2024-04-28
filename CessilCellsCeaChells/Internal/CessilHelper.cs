@@ -66,18 +66,25 @@ internal static class CessilHelper {
                 method.Parameters.Select(param => param.ParameterType).ToArray(),
                 importedParamReferences))) return false;
 
-        methodDefinition = new MethodDefinition(name, MethodAttributes.Public | MethodAttributes.HideBySig, importedReturnType);
-        methodDefinition.Body.InitLocals = true;
+        methodDefinition = new MethodDefinition(name, MethodAttributes.Public | MethodAttributes.HideBySig, importedReturnType) {
+            Body = {
+                InitLocals = true
+            }
+        };
         methodDefinition.Body.GetILProcessor().Emit(OpCodes.Ret);
         
         var paramTypeCounts = new Dictionary<string, int>();
         var paramTypeCounter = new Dictionary<string, int>();
         foreach (var argument in importedParamReferences)
         {
+            // NET 3.5 Fails with TryAdd && Range Index
+            // ReSharper disable once ReplaceSubstringWithRangeIndexer
             var key = argument.IsGenericInstance ? argument.Name
                 .Substring(0, argument.Name.IndexOf('`')) : argument.Name;
+            // ReSharper disable once CanSimplifyDictionaryLookupWithTryAdd
             if (!paramTypeCounter.ContainsKey(key))
                 paramTypeCounter.Add(key, 0);
+            // ReSharper disable once CanSimplifyDictionaryLookupWithTryAdd
             if (!paramTypeCounts.ContainsKey(key))
                 paramTypeCounts.Add(key, 0);
             paramTypeCounts[key]++;
@@ -97,7 +104,7 @@ internal static class CessilHelper {
             var isOptional = constants.Length > 0 && idx >= constantParamCountDiff && constants[constantIdx].Type.FullName == argument.FullName;
             var newParam = new ParameterDefinition(paramName, isOptional ? ParameterAttributes.Optional : ParameterAttributes.None, argument);
             if (constantIdx >= 0 && constants.Length > constantIdx && constants[constantIdx].Type.FullName != argument.FullName)
-                CessilCellsCeaChellsDownByTheCeaChore.Logger.LogWarning($"Ignoring parameter constant @ {idx + 1}, and all preceding parameters, for " +
+                CessilMerger.LogWarnSafe($"Ignoring parameter constant @ {idx + 1}, and all preceding parameters, for " +
                             $"'{typeDef.FullName}::{methodDefinition.Name}' because '{constants[constantIdx].Type.FullName}' is not the correct type! It should be '{argument.FullName}'.");
             if (isOptional)
                 newParam.Constant = constants[constantIdx].Value;
@@ -117,5 +124,5 @@ internal static class CessilHelper {
     }
 
     private static bool ParameterTypesMatch(TypeReference[] parametersFrom, TypeReference[] parametersTo) =>
-        parametersFrom.Select(typ => typ.FullName).SequenceEqual(parametersTo.Select(typ => typ.FullName));
+        parametersFrom.Select(type => type.FullName).SequenceEqual(parametersTo.Select(type => type.FullName));
 }
