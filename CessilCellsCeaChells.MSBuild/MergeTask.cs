@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -38,8 +37,6 @@ public class MergeTask : Task {
     private const string NuGetPackageIdMetadata = "NuGetPackageId";
     private const string FullPathMetadata = "FullPath";
 
-    private static TargetRuntime GetCurrentRuntimePatch(Func<TargetRuntime> orig) => TargetRuntime.Net_2_0; 
-    
     public override bool Execute()
     {
         var outputDirectory = Path.Combine(IntermediateOutputPath, "merges");
@@ -70,70 +67,70 @@ public class MergeTask : Task {
                     .Concat(File.ReadAllBytes(FilePathFromTask(assemPath))).ToArray()));
 
         var hashPath = Path.Combine(outputDirectory, "hash.md5");
-        
-        if (File.Exists(hashPath) && File.ReadAllText(hashPath) == hash)
-        {
-            Log.LogMessage("Merging was already completed for current from and to definitions, skipping!");
-            return true;
-        }
+        var cachePath = Path.Combine(outputDirectory, "cache.txt");
+
+        var isCacheSufficient = File.Exists(hashPath) && File.ReadAllText(hashPath) == hash;
+        var cachedTargetAssemblies = File.Exists(cachePath) ? File.ReadAllText(cachePath).Split(';') : [ ];
 
         CessilMerger.LogDebug += o => Log.LogMessage(o.ToString());
         CessilMerger.LogWarn += o => Log.LogWarning(o.ToString());
         var merger = new CessilMerger();
-        var resolverDirectories = mergeFromTasks.Concat(mergeIntoTasks)
-            .Select(FilePathFromTask)
-            .Select(Path.GetDirectoryName).Where(dir => dir != null).Distinct().ToArray();
-        var defaultResolver = new DefaultAssemblyResolver();
-        defaultResolver.AddSearchDirectory(typeof(MergeTask).Assembly.Location);
-        foreach (var resolverDirectory in resolverDirectories)
-            defaultResolver.AddSearchDirectory(resolverDirectory);
-        merger.CachePath = outputDirectory;
-        merger.TypeResolver = defaultResolver;
 
-        foreach (var mergeFromTask in mergeFromTasks)
-        {
-            var filePath = FilePathFromTask(mergeFromTask);
-            if (!merger.LoadMergesFrom(filePath, out var count)) continue;
-            
-            CessilMerger.LogDebugSafe($"Successfully loaded {count} merge{(count == 1 ? "" : "s")} from '{Path.GetFileName(filePath)}'");
+        if (!isCacheSufficient) {
+            var resolverDirectories = mergeFromTasks.Concat(mergeIntoTasks)
+                .Select(FilePathFromTask)
+                .Select(Path.GetDirectoryName).Where(dir => dir != null).Distinct().ToArray();
+            var defaultResolver = new DefaultAssemblyResolver();
+            defaultResolver.AddSearchDirectory(typeof(MergeTask).Assembly.Location);
+            foreach (var resolverDirectory in resolverDirectories)
+                defaultResolver.AddSearchDirectory(resolverDirectory);
+            merger.CachePath = outputDirectory;
+            merger.TypeResolver = defaultResolver;
+
+            foreach (var mergeFromTask in mergeFromTasks)
+            {
+                var filePath = FilePathFromTask(mergeFromTask);
+                if (!merger.LoadMergesFrom(filePath, out var count)) continue;
+
+                CessilMerger.LogDebugSafe($"Successfully loaded {count} merge{(count == 1 ? "" : "s")} from '{Path.GetFileName(filePath)}'");
+            }
+
+            cachedTargetAssemblies = merger.TargetDLLFileNames.ToArray();
+            File.WriteAllText(cachePath, string.Join(';', cachedTargetAssemblies));
         }
-
-        var targetDlls = merger.TargetDLLFileNames.ToArray();
+        
         foreach (var task in mergeIntoTasks)
         {
             var filePath = FilePathFromTask(task);
             var fileName = Path.GetFileName(filePath);
-            if (!targetDlls.Contains(fileName)) continue;
+            if (!cachedTargetAssemblies.Contains(fileName)) continue;
             
             var outputPath = Path.Combine(outputDirectory, "Cessil." + fileName);
             
-            CessilMerger.LogDebugSafe($"Patching '{fileName}'..");
-            
-            var assemblyDefinition = AssemblyDefinition
-                .ReadAssembly(filePath, new ReaderParameters() { ReadWrite = false, AssemblyResolver = merger.TypeResolver });
-            
-            merger.MergeInto(assemblyDefinition);
-            
-            assemblyDefinition.Write(outputPath);
-            assemblyDefinition.Dispose();
+            if (!isCacheSufficient)
+            {
+                var assemblyDefinition = AssemblyDefinition
+                    .ReadAssembly(filePath, new ReaderParameters() { ReadWrite = false, AssemblyResolver = merger.TypeResolver });
+
+                merger.MergeInto(assemblyDefinition);
+
+                assemblyDefinition.Write(outputPath);
+                assemblyDefinition.Dispose();
+            }
             
             var mergedReference = new TaskItem(outputPath);
             task.CopyMetadataTo(mergedReference);
             mergedReference.RemoveMetadata("ReferenceAssembly");
             
-            CessilMerger.LogDebugSafe($"Patching '{fileName}' done! Cached to '{outputPath}'");
-            
             removedReferences.Add(task);
             mergedReferences.Add(mergedReference);
         }
-        
-        File.WriteAllText(hashPath, hash);
-        
-        merger.Dispose();
 
-        RemovedReferences = removedReferences.ToArray();
+        if (!isCacheSufficient)
+            File.WriteAllText(hashPath, hash);
+        merger.Dispose();
         MergedReferences = mergedReferences.ToArray();
-        
+        RemovedReferences = removedReferences.ToArray();
         return true;
     }
 
