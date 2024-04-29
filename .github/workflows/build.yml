@@ -34,7 +34,7 @@ jobs:
       - name: Upload CessilCellsCeaChells NuPkg Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cccc-nupkg-build
+          name: cccc-nupkg
           path: dist/cessil/*.nupkg
 
       - name: Upload CessilCellsCeaChells.Cli Artifact
@@ -43,8 +43,8 @@ jobs:
           name: cli-build
           path: dist/cli/*.zip
 
-      - name: Upload NuPkg Artifact
+      - name: Upload CessilCellsCeaChells.MSBuild NuPkg Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: msbuild-nupkg-build
+          name: msbuild-nupkg
           path: dist/msbuild/*.nupkg
