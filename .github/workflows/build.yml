@@ -21,18 +21,9 @@ jobs:
         with:
           dotnet-version: "8.0.203"
 
-      - name: Restore Solution
+      - name: Run Cake Build Script
         run: |
-          dotnet restore
-          dotnet tool restore
-
-      - name: Pack CessilCellsCeaChells
-        run: |
-          dotnet pack CessilCellsCeaChells/CessilCellsCeaChells.csproj --configuration Release
-
-      - name: Build CessilCellsCeaChells.Preloader
-        run: |
-          dotnet build CessilCellsCeaChells.Preloader/CessilCellsCeaChells.Preloader.csproj --configuration Release
+          dotnet run --project build/Build.csproj --target Build
 
       - name: Upload Thunderstore Artifact
         uses: actions/upload-artifact@v4
@@ -40,8 +31,20 @@ jobs:
           name: thunderstore-build
           path: dist/*.zip
 
+      - name: Upload CessilCellsCeaChells NuPkg Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cccc-nupkg-build
+          path: dist/cessil/*.nupkg
+
+      - name: Upload CessilCellsCeaChells.Cli Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cli-build
+          path: dist/cli/*.zip
+
       - name: Upload NuPkg Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nupkg-build
-          path: CessilCellsCeaChells/bin/Release/*.nupkg
+          name: msbuild-nupkg-build
+          path: dist/msbuild/*.nupkg

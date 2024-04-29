@@ -1,50 +1,51 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="./CessilCellsCeaChells.Packaging.targets" />
-    
     <PropertyGroup>
-        <!-- BepInEx Properties -->
         <AssemblyName>CessilCellsCeaChells</AssemblyName>
         <Product>CessilCellsCeaChells</Product>
-        
-        <!-- Project Properties -->
         <RootNamespace>CessilCellsCeaChells</RootNamespace>
-        <TargetFrameworks>netstandard2.1;net35</TargetFrameworks>
+        <TargetFrameworks Condition="'$(Configuration)' == 'Mono10'">netstandard2.1;net35</TargetFrameworks>
+        <TargetFrameworks Condition="'$(Configuration)' == 'Mono11'">netstandard2.1;net40</TargetFrameworks>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
-        
-        <!-- Enable Nullable for better IDE null-checking -->
         <Nullable>enable</Nullable>
         
-        <!-- Set NuGet Sources -->
         <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         
-        <!-- Set MinVer Tag & Prerelease Properties -->
-        <MinVerDefaultPreReleaseIdentifiers>dev</MinVerDefaultPreReleaseIdentifiers>
-        <MinVerTagPrefix>v</MinVerTagPrefix>
-        
-        <!-- Embed Debug Symbols for Easier Debugging -->
         <DebugSymbols>true</DebugSymbols>
         <DebugType>embedded</DebugType>
         <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
+        <Configurations>Mono10;Mono11</Configurations>
+        <Platforms>AnyCPU</Platforms>
+
+        <PackageId>CessilCellsCeaChells</PackageId>
+        <Title>CessilCellsCeaChells</Title>
+        <Authors>www_Day_Dream</Authors>
+        <PackageTags>bepinex; unitymod;</PackageTags>
+        <PackageIcon>icon_128x128.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
-    <!-- Set Mod Version with MinVer -->
-    <Target Name="SetModVersion" BeforeTargets="AddGeneratedFile" DependsOnTargets="MinVer">
-        <PropertyGroup>
-            <PlainVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch)</PlainVersion>
-            <BepInExPluginVersion>$(PlainVersion)</BepInExPluginVersion>
-        </PropertyGroup>
-    </Target>
-    
     <ItemGroup>
-        <PackageReference Include="Mono.Cecil" Version="0.10.4" PrivateAssets="all"/>
-        <PackageReference Include="MinVer" Version="4.*" PrivateAssets="all"/>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="all"/>
 
+
+        <PackageReference Condition="'$(Configuration)' == 'Mono10'" 
+                Include="Mono.Cecil" Version="0.10.4" PrivateAssets="all"/>
+        <PackageReference Condition="'$(Configuration)' == 'Mono11'"
+                Include="Mono.Cecil" Version="0.11.5" PrivateAssets="all"/>
+        
         <PackageReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'"
                           Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+
+
+        <None Include="$(ProjectDir)../ts-assets/README.md" Pack="true" PackagePath="/" />
+        <None Include="$(ProjectDir)../ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
     </ItemGroup>
 </Project>

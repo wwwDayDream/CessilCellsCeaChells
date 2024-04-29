@@ -1,7 +1,7 @@
 <Project>
     <PropertyGroup>
-        <PackageId>CessilCellsCeaChells</PackageId>
-        <Title>CessilCellsCeaChells</Title>
+        <PackageId>CessilCellsCeaChells.MSBuild</PackageId>
+        <Title>CessilCellsCeaChells.MSBuild</Title>
         <Authors>www_Day_Dream</Authors>
         <PackageTags>bepinex; unitymod;</PackageTags>
 
@@ -12,6 +12,10 @@
         <PackageProjectUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</PackageProjectUrl>
         <RepositoryUrl>https://github.com/wwwDayDream/CessilCellsCeaChells</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <DevelopmentDependency>true</DevelopmentDependency>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
 
     <!-- NuPkg Includes -->
@@ -19,4 +23,14 @@
         <None Include="$(ProjectDir)../ts-assets/README.md" Pack="true" PackagePath="/" />
         <None Include="$(ProjectDir)../ts-assets/icon_128x128.png" Pack="true" PackagePath="/" />
     </ItemGroup>
+
+    <Target Name="PackTaskDependencies" BeforeTargets="GenerateNuspec">
+        <ItemGroup>
+            <_PackageFiles Include="bin\$(Configuration)\*\CessilCellsCeaChells.dll;bin\$(Configuration)\*\Mono*.dll">
+                <PackagePath>lib%(RecursiveDir)</PackagePath>
+                <Visible>false</Visible>
+                <BuildAction>Content</BuildAction>
+            </_PackageFiles>
+        </ItemGroup>
+    </Target>
 </Project>
