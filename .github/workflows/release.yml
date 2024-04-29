@@ -94,6 +94,7 @@ jobs:
 
   deploy-thunderstore:
     if: ${{ github.event.release.prerelease == false }}
+    name: Deploy to Thunderstore
     needs: build
     runs-on: ubuntu-latest
     steps:
