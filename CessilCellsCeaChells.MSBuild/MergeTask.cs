@@ -83,7 +83,12 @@ public class MergeTask : Task {
         var resolverDirectories = mergeFromTasks.Concat(mergeIntoTasks)
             .Select(FilePathFromTask)
             .Select(Path.GetDirectoryName).Where(dir => dir != null).Distinct().ToArray();
+        var defaultResolver = new DefaultAssemblyResolver();
+        defaultResolver.AddSearchDirectory(typeof(MergeTask).Assembly.Location);
+        foreach (var resolverDirectory in resolverDirectories)
+            defaultResolver.AddSearchDirectory(resolverDirectory);
         merger.CachePath = outputDirectory;
+        merger.TypeResolver = defaultResolver;
 
         foreach (var mergeFromTask in mergeFromTasks)
         {
