@@ -33,7 +33,7 @@ jobs:
       - name: Upload CessilCellsCeaChells NuPkg Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cccc-nupkg-build
+          name: cccc-nupkg
           path: dist/cessil/*.nupkg
 
       - name: Upload CessilCellsCeaChells.Cli Artifact
@@ -42,10 +42,10 @@ jobs:
           name: cli-build
           path: dist/cli/*.zip
 
-      - name: Upload NuPkg Artifact
+      - name: Upload CessilCellsCeaChells.MSBuild NuPkg Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: msbuild-nupkg-build
+          name: msbuild-nupkg
           path: dist/msbuild/*.nupkg
 
   upload-release-artifacts:
@@ -57,7 +57,7 @@ jobs:
       - name: Download all Artifacts
         uses: actions/download-artifact@v4
 
-      - name: Upload artifacts to Release
+      - name: Upload Artifacts to Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*.zip cccc-nupkg-build/*.nupkg cli-build/*.zip msbuild-nupkg-build/*.nupkg
@@ -70,16 +70,16 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v4
 
-      - name: Download CCCC nupkg artifact
+      - name: Download CCCC NuPkg Artifact
         uses: actions/download-artifact@v4
         with:
-          name: cccc-nupkg-build
+          name: cccc-nupkg
           path: dist/cessil
 
-      - name: Download MSBuild nupkg artifact
+      - name: Download MSBuild NuPkg Artifact
         uses: actions/download-artifact@v4
         with:
-          name: msbuild-nupkg-build
+          name: msbuild-nupkg
           path: dist/msbuild
 
       - name: Setup .NET environment
