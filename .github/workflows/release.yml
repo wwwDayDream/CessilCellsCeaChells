@@ -60,7 +60,7 @@ jobs:
       - name: Upload Artifacts to Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*.zip cccc-nupkg-build/*.nupkg cli-build/*.zip msbuild-nupkg-build/*.nupkg
+        run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*.zip cccc-nupkg/*.nupkg cli-build/*.zip msbuild-nupkg/*.nupkg
 
   deploy-nuget:
     name: Deploy to NuGet
