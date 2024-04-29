@@ -49,6 +49,7 @@ jobs:
           path: dist/msbuild/*.nupkg
 
   upload-release-artifacts:
+    name: Deploy to Github
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -89,7 +90,7 @@ jobs:
 
       - name: Publish to NuGet.org
         run: |
-          dotnet nuget push dist/cessel/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push dist/cessil/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           dotnet nuget push dist/msbuild/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
   deploy-thunderstore:
