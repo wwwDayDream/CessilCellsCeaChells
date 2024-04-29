@@ -49,6 +49,7 @@ jobs:
           path: dist/msbuild/*.nupkg
 
   upload-release-artifacts:
+    name: Deploy to Github
     needs: build
     runs-on: ubuntu-latest
     steps:
