@@ -96,7 +96,7 @@ public class MergeTask : Task {
             }
 
             cachedTargetAssemblies = merger.TargetDLLFileNames.ToArray();
-            File.WriteAllText(cachePath, string.Join(';', cachedTargetAssemblies));
+            File.WriteAllText(cachePath, string.Join(";", cachedTargetAssemblies));
         }
         
         foreach (var task in mergeIntoTasks)
