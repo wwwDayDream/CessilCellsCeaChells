@@ -6,7 +6,7 @@ using CommandLine;
 using JetBrains.Annotations;
 using Mono.Cecil;
 
-namespace CessilCellsCeaChells.Tester;
+namespace CessilCellsCeaChells.Cli;
 
 internal static class Program {
     public class Options {
