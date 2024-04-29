@@ -20,18 +20,9 @@ jobs:
         with:
           dotnet-version: "8.0.203"
 
-      - name: Restore Solution
+      - name: Run Cake Build Script
         run: |
-          dotnet restore
-          dotnet tool restore
-
-      - name: Pack CessilCellsCeaChells
-        run: |
-          dotnet pack CessilCellsCeaChells/CessilCellsCeaChells.csproj --configuration Release
-
-      - name: Build CessilCellsCeaChells.Preloader
-        run: |
-          dotnet build CessilCellsCeaChells.Preloader/CessilCellsCeaChells.Preloader.csproj --configuration Release
+          dotnet run --project build/Build.csproj --target Build
 
       - name: Upload Thunderstore Artifact
         uses: actions/upload-artifact@v4
@@ -39,11 +30,23 @@ jobs:
           name: thunderstore-build
           path: dist/*.zip
 
+      - name: Upload CessilCellsCeaChells NuPkg Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cccc-nupkg-build
+          path: dist/cessel/*.nupkg
+
+      - name: Upload CessilCellsCeaChells.Cli Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cli-build
+          path: dist/cli/*.zip
+
       - name: Upload NuPkg Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nupkg-build
-          path: CessilCellsCeaChells/bin/Release/*.nupkg
+          name: msbuild-nupkg-build
+          path: dist/msbuild/*.nupkg
 
   upload-release-artifacts:
     needs: build
@@ -57,7 +60,7 @@ jobs:
       - name: Upload artifacts to Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*.zip nupkg-build/*.nupkg
+        run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*.zip cccc-nupkg-build/*.nupkg cli-build/*.zip msbuild-nupkg-build/*.nupkg
 
   deploy-nuget:
     name: Deploy to NuGet
@@ -67,11 +70,17 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v4
 
-      - name: Download nupkg artifact
+      - name: Download CCCC nupkg artifact
         uses: actions/download-artifact@v4
         with:
-          name: nupkg-build
-          path: CessilCellsCeaChells/bin/Release
+          name: cccc-nupkg-build
+          path: dist/cessel
+
+      - name: Download MSBuild nupkg artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: msbuild-nupkg-build
+          path: dist/msbuild
 
       - name: Setup .NET environment
         uses: actions/setup-dotnet@v3
@@ -80,7 +89,8 @@ jobs:
 
       - name: Publish to NuGet.org
         run: |
-          dotnet nuget push CessilCellsCeaChells/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push dist/cessel/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          dotnet nuget push dist/msbuild/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
   deploy-thunderstore:
     if: ${{ github.event.release.prerelease == false }}

@@ -30,19 +30,19 @@ internal static class Program {
             throw new ArgumentException("Invalid from directory!", mergeFromDir);
         if (!Directory.Exists(mergeIntoDir))
             throw new ArgumentException("Invalid to directory!", mergeIntoDir);
-
+        
         CessilMerger.LogDebug += o => Console.WriteLine($"[DEBUG]\t{o}");
         CessilMerger.LogWarn += o => Console.WriteLine($"[WARN]\t{o}");
 
-        var assemblyResolver = new DefaultAssemblyResolver();
-        assemblyResolver.AddSearchDirectory(mergeIntoDir);
-        assemblyResolver.AddSearchDirectory(mergeFromDir);
-        foreach (var argDependencyDir in option.DependencyDirs!)
-            assemblyResolver.AddSearchDirectory(argDependencyDir);
+        var resolverDirectories = option.DependencyDirs!.Concat([ mergeIntoDir, mergeFromDir ]).ToArray();
 
+        var defaultResolver = new DefaultAssemblyResolver();
+        foreach (var resolverDirectory in resolverDirectories)
+            defaultResolver.AddSearchDirectory(resolverDirectory);
+        
         var merger = new CessilMerger();
-        merger.TypeResolver = assemblyResolver;
         merger.CachePath = Path.Combine(mergeIntoDir, "Cessil.Cache");
+        merger.TypeResolver = defaultResolver;
                 
         foreach (var potentialAssemblySource in Directory.GetFiles(mergeFromDir, "*.dll", SearchOption.AllDirectories))
         {
@@ -50,24 +50,27 @@ internal static class Program {
                     
             Console.WriteLine($"Successfully loaded {count} merge{(count == 1 ? "" : "s")} from '{Path.GetFileName(potentialAssemblySource)}'");
         }
-         
+
+        var targetDLLs = merger.TargetDLLFileNames.ToArray();
         foreach (var potentialPatchInto in Directory.GetFiles(mergeIntoDir, "*.dll", SearchOption.AllDirectories))
         {
-            if (!merger.TargetDLLFileNames.Contains(Path.GetFileName(potentialPatchInto))) continue;
-            
-            var assemblyDef = AssemblyDefinition.ReadAssembly(potentialPatchInto, new ReaderParameters() {ReadWrite = false, AssemblyResolver = merger.TypeResolver});
-            Console.WriteLine($"Patching '{assemblyDef.Name.Name}'..");
-            
-            merger.MergeInto(assemblyDef);
-            
+            var fileName = Path.GetFileName(potentialPatchInto);
+            if (!targetDLLs.Contains(fileName)) continue;
             if (!Directory.Exists(merger.CachePath)) Directory.CreateDirectory(merger.CachePath);
-
-            var outputPath = Path.Combine(merger.CachePath, "Cessil." + assemblyDef.Name.Name + ".dll");
-            assemblyDef.Write(outputPath);
             
-            Console.WriteLine($"Patching '{assemblyDef.Name.Name}' done! Cached to '{outputPath}'");
+            Console.WriteLine($"Patching '{fileName}'..");
+            
+            var outputPath = Path.Combine(merger.CachePath, "Cessil." + fileName);
 
-            assemblyDef.Dispose();
+            var assemblyDefinition = AssemblyDefinition
+                .ReadAssembly(potentialPatchInto, new ReaderParameters() { ReadWrite = false, AssemblyResolver = merger.TypeResolver });
+            
+            merger.MergeInto(assemblyDefinition);
+            
+            assemblyDefinition.Write(outputPath);
+            assemblyDefinition.Dispose();
+            
+            Console.WriteLine($"Patching '{fileName}' done! Cached to '{outputPath}'");
         }
 
         return 0;

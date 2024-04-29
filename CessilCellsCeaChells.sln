@@ -6,23 +6,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.Preloa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.Cli", "CessilCellsCeaChells.Cli\CessilCellsCeaChells.Cli.csproj", "{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.MSBuild", "CessilCellsCeaChells.MSBuild\CessilCellsCeaChells.MSBuild.csproj", "{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Mono10|Any CPU = Mono10|Any CPU
+		Mono11|Any CPU = Mono11|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{14B62494-88AB-48DE-978C-20DB17CD1525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14B62494-88AB-48DE-978C-20DB17CD1525}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14B62494-88AB-48DE-978C-20DB17CD1525}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14B62494-88AB-48DE-978C-20DB17CD1525}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Mono10|Any CPU.ActiveCfg = Mono10|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Mono10|Any CPU.Build.0 = Mono10|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Mono11|Any CPU.ActiveCfg = Mono11|Any CPU
+		{14B62494-88AB-48DE-978C-20DB17CD1525}.Mono11|Any CPU.Build.0 = Mono11|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Mono10|Any CPU.ActiveCfg = Mono10|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Mono10|Any CPU.Build.0 = Mono10|Any CPU
+		{0811796E-2EDA-4E78-A92F-BBAEE2CB3EB3}.Mono11|Any CPU.ActiveCfg = Mono11|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Mono11|Any CPU.ActiveCfg = Mono11|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Mono11|Any CPU.Build.0 = Mono11|Any CPU
+		{0FE0D8FF-B4C6-41C5-A570-9A6241AA7781}.Mono10|Any CPU.ActiveCfg = Mono10|Any CPU
+		{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}.Mono11|Any CPU.ActiveCfg = Mono11|Any CPU
+		{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}.Mono11|Any CPU.Build.0 = Mono11|Any CPU
+		{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}.Mono10|Any CPU.ActiveCfg = Mono10|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,34 @@
+<Project>
+    <PropertyGroup>
+        <_CCCC_TaskFolder Condition="'$(MSBuildRuntimeType)' == 'Core'">netstandard2.1</_CCCC_TaskFolder>
+        <_CCCC_TaskFolder Condition="'$(MSBuildRuntimeType)' != 'Core'">net472</_CCCC_TaskFolder>
+        <_CCCC_TaskAssembly>$(MSBuildThisFileDirectory)..\lib\$(_CCCC_TaskFolder)\$(MSBuildThisFileName).dll</_CCCC_TaskAssembly>
+    </PropertyGroup>
+
+    <UsingTask TaskName="MergeTask" AssemblyFile="$(_CCCC_TaskAssembly)" />
+
+    <Target Name="Merge" AfterTargets="ResolveReferences" BeforeTargets="FindReferenceAssembliesForReferences;Publicize">
+        <Error Condition="'$(UsingMicrosoftNETSdk)' != 'true'" Text="CessilCellsCeaChells.MSBuild only works in SDK-style projects" />
+
+        <MergeTask IntermediateOutputPath="$(IntermediateOutputPath)" 
+                   ReferencePath="@(ReferencePath)" PackageReference="@(PackageReference)" 
+                   MergeFrom="@(MergeFrom)" MergeInto="@(MergeInto)">
+            <Output TaskParameter="RemovedReferences" ItemName="_RemovedMergeReferences" />
+            <Output TaskParameter="MergedReferences" ItemName="_MergedReferences" />
+        </MergeTask>
+
+        <ItemGroup>
+            <ReferencePath Remove="@(_RemovedMergeReferences)" />
+            <ReferencePath Include="@(_MergedReferences)" />
+        </ItemGroup>
+
+        <PropertyGroup>
+            <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        </PropertyGroup>
+    </Target>
+
+    <ItemDefinitionGroup>
+        <MergeFrom Visible="false"/>
+        <MergeInto Visible="false"/>
+    </ItemDefinitionGroup>
+</Project>

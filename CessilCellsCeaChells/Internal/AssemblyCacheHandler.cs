@@ -33,7 +33,7 @@ internal static class AssemblyCacheHandler {
         return merges.Length > 0;
     }
 
-    private static AssemblyDefinition LoadAssembly(string assemblyPath, CessilMerger cessilMerger)
+    internal static AssemblyDefinition LoadAssembly(string assemblyPath, CessilMerger cessilMerger)
     {
         var assemblyDefinition = AssemblyDefinition.ReadAssembly(assemblyPath, new ReaderParameters {
             ReadWrite = true,

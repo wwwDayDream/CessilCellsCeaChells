@@ -57,7 +57,7 @@ internal static class CessilCellsCeaChellsDownByTheCeaChore {
         var outputPath = Path.Combine(Paths.CachePath, "Cessil." + assembly.Name.Name + ".dll");
         assembly.Write(outputPath);
 
-        Logger.LogInfo($"Patching '{assembly.Name.Name}' done! Cached to '{outputPath.Replace(Paths.GameRootPath, ".")}'");
+        Logger.LogInfo($"Patching '{assembly.Name.Name}' done! Cached to '{outputPath}'");
     }
     
     [UsedImplicitly]

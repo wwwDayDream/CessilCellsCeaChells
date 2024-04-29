@@ -23,11 +23,11 @@ source = "../LICENSE"
 target = "/"
 
 [[build.copy]]
-source = "../CessilCellsCeaChells.Preloader/bin/Release/net35/CessilCellsCeaChells.dll"
+source = "../CessilCellsCeaChells.Preloader/bin/Mono10/net35/CessilCellsCeaChells.dll"
 target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [[build.copy]]
-source = "../CessilCellsCeaChells.Preloader/bin/Release/net35/CessilCellsCeaChells.Preloader.dll"
+source = "../CessilCellsCeaChells.Preloader/bin/Mono10/net35/CessilCellsCeaChells.Preloader.dll"
 target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
