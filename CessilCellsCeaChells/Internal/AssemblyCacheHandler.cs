@@ -17,6 +17,7 @@ internal static class AssemblyCacheHandler {
         var shouldUseCacheAssembly = File.Exists(cachePath) && File.GetLastWriteTimeUtc(cachePath).ToFileTimeUtc() == assemblyLastWriteTime;
         var assemblyDefinition = LoadAssembly(shouldUseCacheAssembly ? cachePath : assemblyPath, cessilMerger);
 
+        if (assemblyDefinition == null) return false;
         
         if (shouldUseCacheAssembly)
             CessilMerger.LogDebugSafe($"Falling back to cached merges for '{assemblyDefinition.Name.Name}'. Write Time hasn't changed.");
@@ -33,13 +34,24 @@ internal static class AssemblyCacheHandler {
         return merges.Length > 0;
     }
 
-    internal static AssemblyDefinition LoadAssembly(string assemblyPath, CessilMerger cessilMerger)
+    internal static AssemblyDefinition? LoadAssembly(string assemblyPath, CessilMerger cessilMerger)
     {
-        var assemblyDefinition = AssemblyDefinition.ReadAssembly(assemblyPath, new ReaderParameters {
-            ReadWrite = true,
-            AssemblyResolver = cessilMerger.TypeResolver
-        });
-        cessilMerger.AssembliesToDispose.Add(assemblyDefinition);
+        AssemblyDefinition? assemblyDefinition = null;
+        try
+        {
+            assemblyDefinition = AssemblyDefinition.ReadAssembly(assemblyPath, new ReaderParameters {
+                ReadWrite = true,
+                AssemblyResolver = cessilMerger.TypeResolver
+            });
+        }
+        catch
+        {
+            // ignored
+        }
+        
+        if (assemblyDefinition != null) 
+            cessilMerger.AssembliesToDispose.Add(assemblyDefinition);
+        
         return assemblyDefinition;
     }
 

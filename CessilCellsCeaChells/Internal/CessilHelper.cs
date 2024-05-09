@@ -7,12 +7,12 @@ using Mono.Cecil.Cil;
 namespace CessilCellsCeaChells.Internal;
 
 internal static class CessilHelper {
-    internal static bool TryCreateField(TypeDefinition typeDef, string name, TypeReference importedFieldType, out FieldDefinition? fieldDefinition)
+    internal static bool TryCreateField(TypeDefinition typeDef, string name, TypeReference importedFieldType, out FieldDefinition? fieldDefinition, FieldAttributes customAttributes = FieldAttributes.Private)
     {
         fieldDefinition = default;
         if (typeDef.Fields.Any(field => field.Name == name)) return false;
 
-        typeDef.Fields.Add(fieldDefinition = new FieldDefinition(name, FieldAttributes.Private, importedFieldType));
+        typeDef.Fields.Add(fieldDefinition = new FieldDefinition(name, customAttributes, importedFieldType));
         return true;
     }
     

@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Policy;
+using System.Text;
 using BepInEx;
 using BepInEx.Bootstrap;
 using BepInEx.Logging;
@@ -37,7 +41,17 @@ internal static class CessilCellsCeaChellsDownByTheCeaChore {
         if (!Directory.Exists(bepInExPlugins))
             throw new ArgumentException("Invalid plugin directory!", bepInExPlugins);
         
-        foreach (var potentialAssemblySource in Directory.GetFiles(bepInExPlugins, "*.dll", SearchOption.AllDirectories))
+        foreach (var potentialAssemblySource in Directory
+                     .GetFiles(bepInExPlugins, "*.dll", SearchOption.AllDirectories)
+                     .OrderBy(path =>
+                     {
+                         using var sha256 = SHA256.Create();
+                         var hashValue = path.Replace(Paths.PluginPath, "");
+                         var int32 = sha256.ComputeHash(Encoding.UTF8.GetBytes(hashValue))
+                             .Aggregate(0, (i, b) => i + b);
+                         Logger.LogDebug($"Hashed '{hashValue}' to '{int32}'");
+                         return int32;
+                     }))
         {
             if (!Merger.LoadMergesFrom(potentialAssemblySource, out var count)) continue;
             

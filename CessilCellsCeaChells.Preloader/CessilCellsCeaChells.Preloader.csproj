@@ -46,4 +46,7 @@
         
         <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="CessilCellsCeaChells.Preloader.csproj.user" />
+    </ItemGroup>
 </Project>
