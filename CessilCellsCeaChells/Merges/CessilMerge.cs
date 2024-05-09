@@ -15,6 +15,7 @@ internal abstract class CessilMerge(TypeReference targetTypeRef) {
         { typeof(RequiresPropertyAttribute).FullName, typeof(PropertyMerge) },
         { typeof(RequiresMethodAttribute).FullName, typeof(MethodMerge) },
         { typeof(RequiresMethodDefaultsAttribute).FullName, typeof(MethodMerge) },
+        { typeof(RequiresEnumInsertionAttribute).FullName, typeof(EnumInsertionMerge)}
     };
     internal static bool TryCreateMerges(AssemblyDefinition assembly, out CessilMerge[] merges)
     {

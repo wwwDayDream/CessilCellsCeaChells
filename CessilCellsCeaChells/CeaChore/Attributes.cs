@@ -19,3 +19,7 @@ public class RequiresMethodAttribute : RequiresAttribute {
 public class RequiresMethodDefaultsAttribute : RequiresAttribute {
     [UsedImplicitly] public RequiresMethodDefaultsAttribute(Type targetType, string methodName, Type returnType, Type[] argumentTypes, object[] argumentDefaults) {}
 }
+
+public class RequiresEnumInsertionAttribute : RequiresAttribute {
+    [UsedImplicitly] public RequiresEnumInsertionAttribute(Type targetType, string entryName) {}
+}
