@@ -22,7 +22,7 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 - Injecting Public Methods on any type in `/Game_Data/Managed/*.dll` with any parameters and/or return type.
 
 ### Version Compatability
-[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.21
+[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.x
 
 ### Current Thunderstore Communities
 - [Content Warning](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
