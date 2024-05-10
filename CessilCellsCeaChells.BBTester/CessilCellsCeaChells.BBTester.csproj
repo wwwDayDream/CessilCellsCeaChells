@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../Games.targets"/>
+    
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+
+        <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
+        
+        <TestGame>RiskOfRain2</TestGame>
+    </PropertyGroup>
+    
+    <!-- Game Specific Information -->
+    <Import Condition="'$(TestGame)' == 'ContentWarning'" Project="./ContentWarning.targets"/>
+    <Import Condition="'$(TestGame)' == 'LethalCompany'" Project="./LethalCompany.targets"/>
+    <Import Condition="'$(TestGame)' == 'RiskOfRain2'" Project="./RiskOfRain.targets"/>
+
+    <ItemGroup>
+        <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj">
+            <TargetFramework>netstandard2.1</TargetFramework>
+        </ProjectReference>
+
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        
+        <PackageReference Include="UnityEngine.Modules" Version="$(TargetGameUnityVersion)" PrivateAssets="all"/>
+
+        <Reference Include="$(TargetGameFiles)/*/Managed/$(TargetGameDLL).dll"/>
+    </ItemGroup>
+</Project>

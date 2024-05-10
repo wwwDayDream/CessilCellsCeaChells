@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <DefineConstants>LethalCompany</DefineConstants>
+        <TargetGameFiles>$(LC_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2022.3.9</TargetGameUnityVersion>
+        <TargetGameDLL>Assembly-CSharp</TargetGameDLL>
+    </PropertyGroup>
+</Project>

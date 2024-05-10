@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <DefineConstants>ContentWarning</DefineConstants>
+        <TargetGameFiles>$(CW_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2022.3.10</TargetGameUnityVersion>
+        <TargetGameDLL>Assembly-CSharp</TargetGameDLL>
+    </PropertyGroup>
+</Project>

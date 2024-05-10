@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+        <CW_GAMEFILES>$(STEAMAPPS)/Content Warning/</CW_GAMEFILES>
+        <LC_GAMEFILES>$(STEAMAPPS)/Lethal Company/</LC_GAMEFILES>
+        <ROR2_GAMEFILES>$(STEAMAPPS)/Risk of Rain 2/</ROR2_GAMEFILES>
+    </PropertyGroup>
+</Project>

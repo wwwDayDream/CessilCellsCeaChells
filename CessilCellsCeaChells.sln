@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.Cli", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.MSBuild", "CessilCellsCeaChells.MSBuild\CessilCellsCeaChells.MSBuild.csproj", "{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CessilCellsCeaChells.BBTester", "CessilCellsCeaChells.BBTester\CessilCellsCeaChells.BBTester.csproj", "{2B024475-70BB-481A-B302-488FF184E59B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Mono10|Any CPU = Mono10|Any CPU
@@ -27,5 +29,9 @@ Global
 		{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}.Mono11|Any CPU.ActiveCfg = Mono11|Any CPU
 		{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}.Mono11|Any CPU.Build.0 = Mono11|Any CPU
 		{B3E172C0-280E-44F7-BAD1-19BF0B5F5F1A}.Mono10|Any CPU.ActiveCfg = Mono10|Any CPU
+		{2B024475-70BB-481A-B302-488FF184E59B}.Mono10|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B024475-70BB-481A-B302-488FF184E59B}.Mono10|Any CPU.Build.0 = Debug|Any CPU
+		{2B024475-70BB-481A-B302-488FF184E59B}.Mono11|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B024475-70BB-481A-B302-488FF184E59B}.Mono11|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
