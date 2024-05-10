@@ -7,7 +7,7 @@ repository = "https://thunderstore.io"
 [package]
 namespace = "www_Day_Dream"
 name = "CessilCellsCeaChells"
-description = "Allows installed plugins to request creation of Fields, Properties, and Methods in Managed DLLs."
+description = "Allows installed plugins to request creation of Fields, Properties, Methods, and more in Managed DLLs."
 websiteUrl = "https://github.com/wwwDayDream/CessilCellsCeaChells"
 containsNsfwContent = false
 [package.dependencies]
