@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MinVer.targets"/>
     <PropertyGroup>
         <AssemblyName>CessilCellsCeaChells</AssemblyName>
         <Product>CessilCellsCeaChells</Product>

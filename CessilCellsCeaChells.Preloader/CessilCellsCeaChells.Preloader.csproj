@@ -1,12 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <!-- Set Mod Version with MinVer -->
-    <Target Name="SetModVersion" BeforeTargets="AddGeneratedFile" DependsOnTargets="MinVer">
-        <PropertyGroup>
-            <PlainVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch)</PlainVersion>
-            <BepInExPluginVersion>$(PlainVersion)</BepInExPluginVersion>
-        </PropertyGroup>
-    </Target>
-
+    <Import Project="../MinVer.targets"/>
+    
     <!-- Project Properties -->
     <PropertyGroup>
         <TargetFramework>net35</TargetFramework>
@@ -45,8 +39,5 @@
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="all"/>
         
         <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="CessilCellsCeaChells.Preloader.csproj.user" />
     </ItemGroup>
 </Project>
