@@ -3,7 +3,14 @@
         <MinVerDefaultPreReleaseIdentifiers>dev</MinVerDefaultPreReleaseIdentifiers>
         <MinVerTagPrefix>v</MinVerTagPrefix>
     </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="MinVer" Version="4.*" PrivateAssets="all"/>
     </ItemGroup>
+
+    <Target Name="MyTarget" AfterTargets="MinVer" >
+        <PropertyGroup>
+            <AssemblyVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).0</AssemblyVersion>
+        </PropertyGroup>
+    </Target>
 </Project>
