@@ -8,10 +8,10 @@
 
 [![Github Commits Since Release](https://img.shields.io/github/commits-since/wwwDayDream/CessilCellsCeaChells/latest?style=plastic&logo=github&color=%23995500)]()
 </div>
-Allows installed plugins to request creation of Fields, Properties, and Methods in Managed DLLs.
+Allows installed plugins to request creation of Fields, Properties, Methods, and more in Managed DLLs.
 
 ### Technical Jargon
-A BepInEx 5.4.21 patcher that scans all installed plugins for assembly attributes that inform us of any desired Fields, Properties, and Methods to inject on the `/Game_Data/Managed/` DLLs.
+A BepInEx 5.4.21 patcher that scans all installed plugins for assembly attributes that inform us of any desired Fields, Properties, Methods, and more to inject on the `/Game_Data/Managed/` DLLs.
 
 ### Usage & Documentation
 The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCellsCeaChells/wiki) section as well as usages of assembly attributes.
@@ -21,9 +21,13 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 - Injecting Private Instance Fields on any type in `/Game_Data/Managed/*.dll`
 - Injecting Public Methods on any type in `/Game_Data/Managed/*.dll` with any parameters and/or return type.
 
+### Version Compatability
+[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.21
+
+### Current Thunderstore Communities
+- [Content Warning](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
+- [Lethal Company](https://thunderstore.io/c/lethal-company/p/www_Day_Dream/CessilCellsCeaChells/)
+
 ### Publishing To New Thunderstore Communities
 - Create an issue for the specific community OR
 - Create a pull request with the implementation into the [TCLI TOML](https://github.com/wwwDayDream/CessilCellsCeaChells/blob/master/CessilCellsCeaChells/ts-assets/thunderstore.toml).
-
-### Version Compatability
-[BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.21
