@@ -17,6 +17,9 @@ using TargetEnum = ESpaceGuideType;
 #elif LastTrainWormtown
 using TargetType = Player;
 using TargetEnum = PlayerLook_ThirdPerson.CameraViewMode;
+#elif Mechanica
+using TargetType = Game.Player.PlayerMovement;
+using TargetEnum = Game.Programming.MVariableType;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]

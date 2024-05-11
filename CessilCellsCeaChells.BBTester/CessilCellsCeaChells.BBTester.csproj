@@ -12,7 +12,7 @@
 
         <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
         
-        <TestGame>LastTrainWormtown</TestGame>
+        <TestGame>Mechanica</TestGame>
     </PropertyGroup>
     
     <!-- Game Specific Information -->
@@ -21,6 +21,7 @@
     <Import Condition="'$(TestGame)' == 'RiskOfRain2'" Project="./Games/RiskOfRain.targets"/>
     <Import Condition="'$(TestGame)' == 'DysonSphereProgram'" Project="./Games/DysonSphereProgram.targets"/>
     <Import Condition="'$(TestGame)' == 'LastTrainWormtown'" Project="./Games/LastTrainWormtown.targets"/>
+    <Import Condition="'$(TestGame)' == 'Mechanica'" Project="./Games/Mechanica.targets"/>
 
     <ItemGroup>
         <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj">
