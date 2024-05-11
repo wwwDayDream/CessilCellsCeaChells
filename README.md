@@ -27,6 +27,7 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 ### Current Thunderstore Communities
 - [Content Warning](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
 - [Lethal Company](https://thunderstore.io/c/lethal-company/p/www_Day_Dream/CessilCellsCeaChells/)
+- [Risk of Rain 2](https://thunderstore.io/package/www_Day_Dream/CessilCellsCeaChells/)
 
 ### Publishing To New Thunderstore Communities
 - Create an issue for the specific community OR
