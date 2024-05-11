@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net35</TargetFramework>
+        <DefineConstants>EnterTheGungeon</DefineConstants>
+        <TargetGameFiles>$(ETG_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2017.4.27</TargetGameUnityVersion>
+        <TargetGameDLL>Assembly-CSharp</TargetGameDLL>
+    </PropertyGroup>
+</Project>

@@ -12,7 +12,7 @@
 
         <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
         
-        <TestGame>Muck</TestGame>
+        <TestGame>EnterTheGungeon</TestGame>
     </PropertyGroup>
     
     <!-- Game Specific Information -->
@@ -23,11 +23,10 @@
     <Import Condition="'$(TestGame)' == 'LastTrainWormtown'" Project="./Games/LastTrainWormtown.targets"/>
     <Import Condition="'$(TestGame)' == 'Mechanica'" Project="./Games/Mechanica.targets"/>
     <Import Condition="'$(TestGame)' == 'Muck'" Project="./Games/Muck.targets"/>
+    <Import Condition="'$(TestGame)' == 'EnterTheGungeon'" Project="./Games/EnterTheGungeon.targets"/>
 
     <ItemGroup>
-        <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj">
-            <TargetFramework>netstandard2.1</TargetFramework>
-        </ProjectReference>
+        <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj"/>
 
         <PackageReference Include="BepInEx.Core" Version="5.*"/>
         
