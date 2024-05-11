@@ -4,6 +4,6 @@
         <LC_GAMEFILES>$(STEAMAPPS)/Lethal Company/</LC_GAMEFILES>
         <ROR2_GAMEFILES>$(STEAMAPPS)/Risk of Rain 2/</ROR2_GAMEFILES>
         <DSP_GAMEFILES>$(STEAMAPPS)/Dyson Sphere Program/</DSP_GAMEFILES>
-        <LTOWT_GAMEFILES>$(STEAMAPPS)/Last Train Outta' Wormtown Demo/</LTOWT_GAMEFILES>
+        <LTOWT_GAMEFILES>$(STEAMAPPS)/Last Train Outta' Wormtown/</LTOWT_GAMEFILES>
     </PropertyGroup>
 </Project>
