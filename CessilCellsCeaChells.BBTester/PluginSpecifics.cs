@@ -28,6 +28,9 @@ using TargetEnum = PlayerInputState;
 #elif Atomicrops
 using TargetType = PlayerGunUtils;
 using TargetEnum = RelationshipStateEnums;
+#elif PotionCraft
+using TargetType = PotionCraft.Inventory;
+using TargetEnum = PotionCraft.Inventory.Owner;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
