@@ -10,6 +10,7 @@ name = "CessilCellsCeaChells"
 description = "Allows installed plugins to request creation of Fields, Properties, Methods, and more in Managed DLLs."
 websiteUrl = "https://github.com/wwwDayDream/CessilCellsCeaChells"
 containsNsfwContent = false
+dependencies = []
 
 [build]
 icon = "icon.png"
