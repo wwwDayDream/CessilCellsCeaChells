@@ -32,5 +32,5 @@ target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
 communities = [ "content-warning", "lethal-company", "riskofrain2", "dyson-sphere-program", "last-train-outta-wormtown", 
-    "mechanica", "muck" ]
+    "mechanica", "muck", "enter-the-gungeon" ]
 categories = [ "libraries" ]
