@@ -11,6 +11,8 @@ description = "Allows installed plugins to request creation of Fields, Propertie
 websiteUrl = "https://github.com/wwwDayDream/CessilCellsCeaChells"
 containsNsfwContent = false
 
+[package.dependencies]
+
 [build]
 icon = "icon.png"
 readme = "README.md"
