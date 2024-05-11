@@ -14,6 +14,9 @@ using TargetEnum = RoR2.ItemTier;
 #elif DysonSphereProgram
 using TargetType = Player;
 using TargetEnum = ESpaceGuideType;
+#elif LastTrainWormtown
+using TargetType = Player;
+using TargetEnum = PlayerLook_ThirdPerson.CameraViewMode;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]

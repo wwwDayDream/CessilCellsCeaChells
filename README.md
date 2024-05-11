@@ -25,10 +25,11 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 [BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.x
 
 ### Current Thunderstore Communities
-[![Content Warning](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%2379C314&label=Content%20Warning)](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
-<br/>[![Lethal Company](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23487DE7&label=Lethal%20Company)](https://thunderstore.io/c/lethal-company/p/www_Day_Dream/CessilCellsCeaChells/)
-<br/>[![Risk of Rain 2](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%234B369D&label=Risk%20of%20Rain%202)](https://thunderstore.io/package/www_Day_Dream/CessilCellsCeaChells/)
-<br/>[![Dyson Sphere Program](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%2370369D&label=Dyson%20Sphere%20Program)](https://thunderstore.io/c/dyson-sphere-program/p/www_Day_Dream/CessilCellsCeaChells/)
+[![Content Warning](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23FFA500&label=Content%20Warning)](https://thunderstore.io/c/content-warning/p/www_Day_Dream/CessilCellsCeaChells/)
+<br/>[![Dyson Sphere Program](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23487DE7&label=Dyson%20Sphere%20Program)](https://thunderstore.io/c/dyson-sphere-program/p/www_Day_Dream/CessilCellsCeaChells/)
+<br/>[![Lethal Company](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%23FAEB36&label=Lethal%20Company)](https://thunderstore.io/c/lethal-company/p/www_Day_Dream/CessilCellsCeaChells/)
+<br/>[![Last Train Outta' Wormtown](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%234B369D&label=Last%20Train%20Outta%27%20Wormtown)](https://thunderstore.io/c/last-train-outta-wormtown/p/www_Day_Dream/CessilCellsCeaChells/)
+<br/>[![Risk of Rain 2](https://img.shields.io/thunderstore/v/www_Day_Dream/CessilCellsCeaChells?style=plastic&logo=thunderstore&color=%2379C314&label=Risk%20of%20Rain%202)](https://thunderstore.io/package/www_Day_Dream/CessilCellsCeaChells/)
 
 ### Publishing To New Thunderstore Communities
 - Create an issue for the specific community
