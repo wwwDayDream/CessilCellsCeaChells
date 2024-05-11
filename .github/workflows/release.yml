@@ -93,6 +93,40 @@ jobs:
           dotnet nuget push dist/cessil/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
           dotnet nuget push dist/msbuild/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
+  deploy-gitget:
+    name: Deploy to Github Packages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+
+      - name: Download CCCC NuPkg Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cccc-nupkg
+          path: dist/cessil
+
+      - name: Download MSBuild NuPkg Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: msbuild-nupkg
+          path: dist/msbuild
+
+      - name: Setup .NET environment
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.203"
+          
+      - name: Authenticate With Source
+        run: |
+          dotnet nuget add source --username wwwDayDream --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/wwwDayDream/index.json"
+          
+      - name: Publish to Github Packages
+        run: |
+          dotnet nuget push dist/cessil/*.nupkg --api-key ${{ secrets.DAY_GIT_PAT }} --source "github"
+          dotnet nuget push dist/msbuild/*.nupkg --api-key ${{ secrets.DAY_GIT_PAT }} --source "github"
+
   deploy-thunderstore:
     if: ${{ github.event.release.prerelease == false }}
     name: Deploy to Thunderstore
