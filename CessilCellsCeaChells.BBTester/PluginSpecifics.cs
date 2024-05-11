@@ -31,6 +31,9 @@ using TargetEnum = RelationshipStateEnums;
 #elif PotionCraft
 using TargetType = PotionCraft.Inventory;
 using TargetEnum = PotionCraft.Inventory.Owner;
+#elif Rounds
+using TargetType = Player;
+using TargetEnum = PickerType;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
