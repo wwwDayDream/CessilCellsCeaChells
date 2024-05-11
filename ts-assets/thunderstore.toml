@@ -29,8 +29,5 @@ source = "../CessilCellsCeaChells.Preloader/bin/Mono10/net35/CessilCellsCeaChell
 target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
-communities = [ "content-warning", "lethal-company" ]
-[publish.categories]
-content-warning = [ "libraries" ]
-lethal-company = [ "libraries" ]
-# For a list of valid tags, look at the slug values in https://thunderstore.io/api/experimental/community/content-warning/category/
+communities = [ "content-warning", "lethal-company", "riskofrain2" ]
+categories = [ "libraries" ]
