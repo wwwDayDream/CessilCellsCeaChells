@@ -29,5 +29,6 @@ source = "../CessilCellsCeaChells.Preloader/bin/Mono10/net35/CessilCellsCeaChell
 target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
-communities = [ "content-warning", "lethal-company", "riskofrain2", "dyson-sphere-program", "last-train-outta-wormtown" ]
+communities = [ "content-warning", "lethal-company", "riskofrain2", "dyson-sphere-program", "last-train-outta-wormtown", 
+    "mechanica" ]
 categories = [ "libraries" ]
