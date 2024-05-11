@@ -1,7 +1,6 @@
 using CessilCellsCeaChells.BBTester;
 using CessilCellsCeaChells.CeaChore;
 
-
 #if ContentWarning
 using TargetType = Player;
 using TargetEnum = ShopItemCategory;
@@ -23,6 +22,9 @@ using TargetEnum = Game.Programming.MVariableType;
 #elif Muck
 using TargetType = Player;
 using TargetEnum = PowerupConstants;
+#elif EnterTheGungeon
+using TargetType = PlayerStats;
+using TargetEnum = PlayerInputState;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
