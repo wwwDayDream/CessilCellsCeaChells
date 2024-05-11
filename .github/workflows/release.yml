@@ -124,8 +124,8 @@ jobs:
           
       - name: Publish to Github Packages
         run: |
-          dotnet nuget push dist/cessil/*.nupkg --api-key ${{ secrets.DAY_GIT_PAT }} --source "github"
-          dotnet nuget push dist/msbuild/*.nupkg --api-key ${{ secrets.DAY_GIT_PAT }} --source "github"
+          dotnet nuget push dist/cessil/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+          dotnet nuget push dist/msbuild/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
 
   deploy-thunderstore:
     if: ${{ github.event.release.prerelease == false }}
