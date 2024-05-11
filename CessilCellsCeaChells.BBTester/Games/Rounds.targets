@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <DefineConstants>Rounds</DefineConstants>
+        <TargetGameFiles>$(ROUNDS_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2022.3.18</TargetGameUnityVersion>
+        <TargetGameDLL>Assembly-CSharp</TargetGameDLL>
+    </PropertyGroup>
+</Project>
