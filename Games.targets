@@ -6,5 +6,6 @@
         <DSP_GAMEFILES>$(STEAMAPPS)/Dyson Sphere Program/</DSP_GAMEFILES>
         <LTOWT_GAMEFILES>$(STEAMAPPS)/Last Train Outta' Wormtown/</LTOWT_GAMEFILES>
         <MECHANICA_GAMEFILES>$(STEAMAPPS)/Mechanica/</MECHANICA_GAMEFILES>
+        <MUCK_GAMEFILES>$(STEAMAPPS)/Muck/</MUCK_GAMEFILES>
     </PropertyGroup>
 </Project>

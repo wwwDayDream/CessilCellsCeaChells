@@ -20,6 +20,9 @@ using TargetEnum = PlayerLook_ThirdPerson.CameraViewMode;
 #elif Mechanica
 using TargetType = Game.Player.PlayerMovement;
 using TargetEnum = Game.Programming.MVariableType;
+#elif Muck
+using TargetType = Player;
+using TargetEnum = PowerupConstants;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]

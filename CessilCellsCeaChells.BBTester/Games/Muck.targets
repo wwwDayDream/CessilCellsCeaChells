@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <DefineConstants>Muck</DefineConstants>
+        <TargetGameFiles>$(MUCK_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2019.4.19</TargetGameUnityVersion>
+        <TargetGameDLL>Assembly-CSharp</TargetGameDLL>
+    </PropertyGroup>
+</Project>
