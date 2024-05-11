@@ -25,6 +25,9 @@ using TargetEnum = PowerupConstants;
 #elif EnterTheGungeon
 using TargetType = PlayerStats;
 using TargetEnum = PlayerInputState;
+#elif Atomicrops
+using TargetType = PlayerGunUtils;
+using TargetEnum = RelationshipStateEnums;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
