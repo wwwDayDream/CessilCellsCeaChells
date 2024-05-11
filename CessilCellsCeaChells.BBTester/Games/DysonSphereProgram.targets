@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <DefineConstants>DysonSphereProgram</DefineConstants>
+        <TargetGameFiles>$(DSP_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2018.4.12</TargetGameUnityVersion>
+        <TargetGameDLL>Assembly-CSharp</TargetGameDLL>
+    </PropertyGroup>
+</Project>

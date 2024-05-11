@@ -12,13 +12,14 @@
 
         <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))=./</PathMap>
         
-        <TestGame>RiskOfRain2</TestGame>
+        <TestGame>DysonSphereProgram</TestGame>
     </PropertyGroup>
     
     <!-- Game Specific Information -->
-    <Import Condition="'$(TestGame)' == 'ContentWarning'" Project="./ContentWarning.targets"/>
-    <Import Condition="'$(TestGame)' == 'LethalCompany'" Project="./LethalCompany.targets"/>
-    <Import Condition="'$(TestGame)' == 'RiskOfRain2'" Project="./RiskOfRain.targets"/>
+    <Import Condition="'$(TestGame)' == 'ContentWarning'" Project="./Games/ContentWarning.targets"/>
+    <Import Condition="'$(TestGame)' == 'LethalCompany'" Project="./Games/LethalCompany.targets"/>
+    <Import Condition="'$(TestGame)' == 'RiskOfRain2'" Project="./Games/RiskOfRain.targets"/>
+    <Import Condition="'$(TestGame)' == 'DysonSphereProgram'" Project="./Games/DysonSphereProgram.targets"/>
 
     <ItemGroup>
         <ProjectReference Include="../CessilCellsCeaChells/CessilCellsCeaChells.csproj">

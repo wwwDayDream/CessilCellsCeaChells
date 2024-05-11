@@ -11,6 +11,9 @@ using TargetEnum = SettingsOptionType;
 #elif RiskOfRain2
 using TargetType = RoR2.Inventory;
 using TargetEnum = RoR2.ItemTier;
+#elif DysonSphereProgram
+using TargetType = Player;
+using TargetEnum = ESpaceGuideType;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
