@@ -19,7 +19,8 @@ The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCells
 ## Features
 - Injecting Public Instance Properties on any type in `/Game_Data/Managed/*.dll`
 - Injecting Private Instance Fields on any type in `/Game_Data/Managed/*.dll`
-- Injecting Public Methods on any type in `/Game_Data/Managed/*.dll` with any parameters and/or return type.
+- Injecting Public Methods on any type in `/Game_Data/Managed/*.dll` with any parameters, defaults, and/or return type.
+- Injecting Enum Entries onto any enum in an ordered fashion.
 
 ### Version Compatability
 [BepInEx](https://github.com/BepInEx/BepInEx/) - v5.4.x
