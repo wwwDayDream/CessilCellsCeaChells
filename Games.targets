@@ -5,5 +5,6 @@
         <ROR2_GAMEFILES>$(STEAMAPPS)/Risk of Rain 2/</ROR2_GAMEFILES>
         <DSP_GAMEFILES>$(STEAMAPPS)/Dyson Sphere Program/</DSP_GAMEFILES>
         <LTOWT_GAMEFILES>$(STEAMAPPS)/Last Train Outta' Wormtown/</LTOWT_GAMEFILES>
+        <MECHANICA_GAMEFILES>$(STEAMAPPS)/Mechanica/</MECHANICA_GAMEFILES>
     </PropertyGroup>
 </Project>
