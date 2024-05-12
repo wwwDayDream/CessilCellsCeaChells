@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <DefineConstants>Valheim</DefineConstants>
+        <TargetGameFiles>$(VLHM_GAMEFILES)</TargetGameFiles>
+        <TargetGameUnityVersion>2022.3.17</TargetGameUnityVersion>
+        <TargetGameDLL>assembly_valheim</TargetGameDLL>
+    </PropertyGroup>
+</Project>
