@@ -34,15 +34,15 @@ using TargetEnum = PotionCraft.Inventory.Owner;
 #elif Rounds
 using TargetType = Player;
 using TargetEnum = PickerType;
+#elif Valheim
+using TargetType = Player;
+using TargetEnum = Player.PlacementStatus;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
-[assembly: RequiresProperty(typeof(TargetType), "BB_TestProp", typeof(CustomDataStruct))]
+[assembly: RequiresProperty(typeof(TargetType), "BB_TestProp", typeof(string))]
 [assembly: RequiresEnumInsertion(typeof(TargetEnum), "BB_TestEnum")]
 [assembly: RequiresMethod(typeof(TargetType), "BB_TestMethod", typeof(void), 
     typeof(string), typeof(int))] // void Player::BB_TestMethod(string, int)
 [assembly: RequiresMethodDefaults(typeof(TargetType), "BB_TestMethod", typeof(void),
     [ typeof (bool), typeof(int) ], [ 0 ])] // void Player::BB_TestMethod(bool, int = 0)
-
-namespace CessilCellsCeaChells.BBTester;
-public struct CustomDataStruct { }
