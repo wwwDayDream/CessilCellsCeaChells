@@ -6,14 +6,6 @@ on:
   pull_request:
 
 jobs:
-  changelog:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Build Changelog"
-        id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
   build:
     name: Build
     needs: changelog
@@ -24,6 +16,12 @@ jobs:
         with:
           fetch-depth: 0
           filter: tree:0
+          
+      - name: "Build Changelog"
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET Env
         uses: actions/setup-dotnet@v4
