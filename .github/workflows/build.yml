@@ -25,7 +25,8 @@ jobs:
           toTag: ${{ github.ref }}
           configurationJson: |
             {
-            "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n<details>\n#{{UNCATEGORIZED}}\n\n[Full Diff](#{{RELEASE_DIFF}})</details>",
+              "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n<details>\n#{{UNCATEGORIZED}}\n\n[Full Diff](#{{RELEASE_DIFF}})</details>",
+              "pr_template": "* #{{TITLE}} by [@#{{AUTHOR}}](https://github.com/#{{AUTHOR}}) in [##{{NUMBER}}](#{{URL}})",
               "categories": [
                 {
                     "title": "## Features",
