@@ -13,7 +13,7 @@ jobs:
         uses: heinrichreimer/action-github-changelog-generator@v2.3
         with:
           output: "CHANGELOG.md"
-          onlyLastTag: true
+          onlyLastTag: 1
           token: ${{ secrets.GITHUB_TOKEN }}
   build:
     name: Build
