@@ -21,6 +21,30 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           outputFile: "CHANGELOG.md"
+          includeOpen: true
+          fromTag: "refs/tags/0"
+          configurationJson: |
+            {
+              "template": "#{{CHANGELOG}}\n\n<details>\n\n\n#{{UNCATEGORIZED}}\n</details>",
+              "categories": [
+                {
+                    "title": "## Features",
+                    "labels": ["Feature"]
+                },
+                {
+                    "title": "## Fixes",
+                    "labels": ["Fix"]
+                },
+                {
+                    "title": "## Documentation",
+                    "labels": ["Documentation"]
+                },
+                {
+                    "title": "## Distribution",
+                    "labels": ["Distribution"]
+                }
+              ]
+            }
 
       - name: Setup .NET Env
         uses: actions/setup-dotnet@v4
