@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: build
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Fetch Sources
@@ -15,6 +15,34 @@ jobs:
         with:
           fetch-depth: 0
           filter: tree:0
+
+      - name: "Build Changelog"
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          outputFile: "CHANGELOG.md"
+          configurationJson: |
+            {
+              "template": "#{{CHANGELOG}}\n\n<details>\n\n\n#{{UNCATEGORIZED}}\n</details>",
+              "categories": [
+                {
+                    "title": "## Features",
+                    "labels": ["Feature"]
+                },
+                {
+                    "title": "## Fixes",
+                    "labels": ["Fix"]
+                },
+                {
+                    "title": "## Documentation",
+                    "labels": ["Documentation"]
+                },
+                {
+                    "title": "## Distribution",
+                    "labels": ["Distribution"]
+                }
+              ]
+            }
 
       - name: Setup .NET Env
         uses: actions/setup-dotnet@v4
