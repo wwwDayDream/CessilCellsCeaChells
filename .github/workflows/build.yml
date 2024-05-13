@@ -20,6 +20,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          outputFile: "CHANGELOG.md"
 
       - name: Setup .NET Env
         uses: actions/setup-dotnet@v4
