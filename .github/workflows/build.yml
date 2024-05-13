@@ -21,9 +21,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           outputFile: "CHANGELOG.md"
+          toTag: ${{ github.ref_name }}
           configurationJson: |
             {
-              "template": "#{{CHANGELOG}}\n\n<details>\n\n\n#{{UNCATEGORIZED}}\n</details>",
+              "template": "#{{CHANGELOG}}\n\n<details>\n#{{UNCATEGORIZED}}\n#{{RELEASE_DIFF}}</details>",
               "categories": [
                 {
                     "title": "## Features",
