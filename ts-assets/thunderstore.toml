@@ -19,6 +19,10 @@ readme = "README.md"
 outdir = "../dist"
 
 [[build.copy]]
+source = "../CHANGELOG.md"
+target = "/"
+
+[[build.copy]]
 source = "../LICENSE"
 target = "/"
 

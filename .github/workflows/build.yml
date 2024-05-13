@@ -6,8 +6,17 @@ on:
   pull_request:
 
 jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "✏️ Generate release changelog"
+        uses: heinrichreimer/action-github-changelog-generator@v2.3
+        with:
+          output: "CHANGELOG.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
   build:
-    name: build
+    name: Build
+    needs: changelog
     runs-on: ubuntu-latest
     steps:
       - name: Fetch Sources
