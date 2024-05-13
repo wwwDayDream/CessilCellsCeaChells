@@ -9,13 +9,15 @@ jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
-      - name: "✏️ Generate release changelog"
-        uses: heinrichreimer/action-github-changelog-generator@v2.3
+      - uses: actions/checkout@v2
         with:
-          output: "CHANGELOG.md"
-          onlyLastTag: 1
-          pullRequests: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - uses: BobAnkh/auto-generate-changelog@v1.2.5
+        with:
+          REPO_NAME: '${{ github.repository }}'
+          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PATH: 'CHANGELOG.md'
+          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
   build:
     name: Build
     needs: changelog
