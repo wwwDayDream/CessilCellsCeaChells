@@ -22,10 +22,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           outputFile: "CHANGELOG.md"
           includeOpen: true
+          ignorePreReleases: true
           toTag: ${{ github.ref }}
           configurationJson: |
             {
-              "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n<details>\n#{{UNCATEGORIZED}}\n\n[Full Diff](#{{RELEASE_DIFF}})</details>",
+              "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n### Misc\n\n#{{UNCATEGORIZED}}\n\nFull Changelog: [<u>#{{FROM_TAG}}...#{{TO_TAG}}</u>](#{{RELEASE_DIFF}})",
               "pr_template": "* #{{TITLE}} by [<u>@#{{AUTHOR}}</u>](https://github.com/#{{AUTHOR}}) in [<u>##{{NUMBER}}</u>](#{{URL}})",
               "categories": [
                 {
