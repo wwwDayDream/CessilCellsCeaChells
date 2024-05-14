@@ -21,6 +21,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           outputFile: "CHANGELOG.md"
           ignorePreReleases: true
+          fetchReleaseInformation: true
           configurationJson: |
             {
               "template": "# ${{ github.event.repository.name }} - ${{ github.ref_name }}\n\n#{{CHANGELOG}}\n\n### Misc\n---\n#{{UNCATEGORIZED}}\n\nFull Changelog: [<u>#{{FROM_TAG}}...#{{TO_TAG}}</u>](#{{RELEASE_DIFF}})",
