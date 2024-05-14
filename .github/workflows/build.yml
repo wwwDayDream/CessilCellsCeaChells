@@ -26,7 +26,7 @@ jobs:
           toTag: ${{ github.ref }}
           configurationJson: |
             {
-              "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n### Misc\n\n#{{UNCATEGORIZED}}\n\nFull Changelog: [<u>#{{FROM_TAG}}...#{{TO_TAG}}</u>](#{{RELEASE_DIFF}})",
+              "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n## Misc\n\n#{{UNCATEGORIZED}}\n\nFull Changelog: [<u>#{{FROM_TAG}}...#{{TO_TAG}}</u>](#{{RELEASE_DIFF}})",
               "pr_template": "* #{{TITLE}} by [<u>@#{{AUTHOR}}</u>](https://github.com/#{{AUTHOR}}) in [<u>##{{NUMBER}}</u>](#{{URL}})",
               "categories": [
                 {
