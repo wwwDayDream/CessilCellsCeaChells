@@ -28,7 +28,7 @@
             <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         </PropertyGroup>
         
-        <Touch Files="@(ReferencePath -> '%(Identity).patched')" />
+        <Touch Files="@(ReferencePath -> '%(Identity).patched')" AlwaysCreate="true" ForceTouch="true"/>
     </Target>
 
     <ItemDefinitionGroup>
