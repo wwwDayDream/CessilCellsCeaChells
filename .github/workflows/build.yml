@@ -27,7 +27,7 @@ jobs:
           configurationJson: |
             {
               "template": "# ${{ github.event.repository.name }} - ${{ github.ref }}\n\n#{{CHANGELOG}}\n\n### Misc\n---\n#{{UNCATEGORIZED}}\n\nFull Changelog: [#{{FROM_TAG}}...#{{TO_TAG}}](#{{RELEASE_DIFF}})",
-              "pr_template": "* #{{TITLE}} by [==@#{{AUTHOR}}==](https://github.com/#{{AUTHOR}}) in [##{{NUMBER}}](#{{URL}})",
+              "pr_template": "* #{{TITLE}} by [@#{{AUTHOR}}](https://github.com/#{{AUTHOR}}) in [##{{NUMBER}}](#{{URL}})",
               "categories": [
                 {
                     "title": "## Features",
