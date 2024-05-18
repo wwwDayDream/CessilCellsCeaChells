@@ -36,6 +36,7 @@ public class MergeTask : Task {
     private const string FileNameMetadata = "FileName";
     private const string NuGetPackageIdMetadata = "NuGetPackageId";
     private const string FullPathMetadata = "HintPath";
+    private const string FullPathMetadataAlt = "FullPath";
 
     public override bool Execute()
     {
@@ -168,5 +169,10 @@ public class MergeTask : Task {
 
         return builder.ToString();
     }
-    private static string FilePathFromTask(ITaskItem taskItem) => taskItem.GetMetadata(FullPathMetadata);
+    private static string FilePathFromTask(ITaskItem taskItem)
+    {
+        var fullPath = taskItem.GetMetadata(FullPathMetadata);
+        fullPath = string.IsNullOrEmpty(fullPath) ? taskItem.GetMetadata(FullPathMetadataAlt) : fullPath;
+        return fullPath;
+    }
 }
