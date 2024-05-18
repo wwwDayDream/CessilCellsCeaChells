@@ -7,7 +7,9 @@
 
     <UsingTask TaskName="MergeTask" AssemblyFile="$(_CCCC_TaskAssembly)" />
 
-    <Target Name="Merge" AfterTargets="ResolveReferences" BeforeTargets="FindReferenceAssembliesForReferences;Publicize">
+    <Target Name="Merge" AfterTargets="ResolveReferences" BeforeTargets="FindReferenceAssembliesForReferences;Publicize"
+            Inputs="@(ReferencePath)"
+            Outputs="@(ReferencePath -> '%(Identity).patched')">
         <Error Condition="'$(UsingMicrosoftNETSdk)' != 'true'" Text="CessilCellsCeaChells.MSBuild only works in SDK-style projects" />
 
         <MergeTask IntermediateOutputPath="$(IntermediateOutputPath)" 
@@ -25,6 +27,8 @@
         <PropertyGroup>
             <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         </PropertyGroup>
+        
+        <Touch Files="@(ReferencePath -> '%(Identity).patched')" />
     </Target>
 
     <ItemDefinitionGroup>
