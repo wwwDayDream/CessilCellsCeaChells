@@ -13,7 +13,7 @@
         <Error Condition="'$(UsingMicrosoftNETSdk)' != 'true'" Text="CessilCellsCeaChells.MSBuild only works in SDK-style projects" />
 
         <MergeTask IntermediateOutputPath="$(IntermediateOutputPath)" 
-                   ReferencePath="@(ReferencePath)" PackageReference="@(PackageReference)" 
+                   ReferencePath="@(ReferencePath)" PackageReference="@(Reference)" 
                    MergeFrom="@(MergeFrom)" MergeInto="@(MergeInto)">
             <Output TaskParameter="RemovedReferences" ItemName="_RemovedMergeReferences" />
             <Output TaskParameter="MergedReferences" ItemName="_MergedReferences" />

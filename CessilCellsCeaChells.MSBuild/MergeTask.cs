@@ -35,7 +35,7 @@ public class MergeTask : Task {
     private const string MergeFromMetadata = "MergeFrom";
     private const string FileNameMetadata = "FileName";
     private const string NuGetPackageIdMetadata = "NuGetPackageId";
-    private const string FullPathMetadata = "FullPath";
+    private const string FullPathMetadata = "HintPath";
 
     public override bool Execute()
     {
