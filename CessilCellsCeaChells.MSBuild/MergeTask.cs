@@ -77,7 +77,7 @@ public class MergeTask : Task {
         var merger = new CessilMerger();
 
         if (!isCacheSufficient) {
-            var resolverDirectories = mergeFromTasks.Concat(mergeIntoTasks)
+            var resolverDirectories = PackageReference
                 .Select(FilePathFromTask)
                 .Select(Path.GetDirectoryName).Where(dir => dir != null).Distinct().ToArray();
             var defaultResolver = new DefaultAssemblyResolver();
