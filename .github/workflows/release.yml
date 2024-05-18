@@ -94,7 +94,7 @@ jobs:
         run: gh release upload ${{ github.event.release.tag_name }} thunderstore-build/*.zip cccc-nupkg/*.nupkg cli-build/*.zip msbuild-nupkg/*.nupkg
 
   deploy-nuget:
-    if: ${{ github.event.release.prerelease == false }}
+    if: ${{ github.event.release.prerelease == false || contains(GITHUB_REF_NAME, 'f') }}
     name: Deploy to NuGet
     needs: build
     runs-on: ubuntu-latest
