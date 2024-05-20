@@ -9,6 +9,7 @@ namespace CessilCellsCeaChells.Merges;
 internal class FieldMerge(CustomAttribute attribute) : CessilMerge((TypeReference)attribute.ConstructorArguments[0].Value) {
     private readonly string FieldName = (string)attribute.ConstructorArguments[1].Value;
     private readonly TypeReference FieldType = (TypeReference)attribute.ConstructorArguments[2].Value;
+    private readonly bool IsPublic = attribute.ConstructorArguments.Count > 3 && (bool)attribute.ConstructorArguments[3].Value;
 
     internal override CustomAttribute ConvertToAttribute(AssemblyDefinition into)
     {
@@ -19,7 +20,8 @@ internal class FieldMerge(CustomAttribute attribute) : CessilMerge((TypeReferenc
             ConstructorArguments = {
                 new CustomAttributeArgument(typeTypeRef, targetTypeRef),
                 new CustomAttributeArgument(into.MainModule.TypeSystem.String, FieldName),
-                new CustomAttributeArgument(typeTypeRef, fieldTypeTypeRef)
+                new CustomAttributeArgument(typeTypeRef, fieldTypeTypeRef),
+                new CustomAttributeArgument(into.MainModule.TypeSystem.Boolean, IsPublic)
             }
         };
     }
@@ -27,7 +29,8 @@ internal class FieldMerge(CustomAttribute attribute) : CessilMerge((TypeReferenc
     internal override bool TryMergeInto(TypeDefinition typeDefinition, out IMemberDefinition? memberDefinition)
     {
         memberDefinition = default;
-        var didCreate = CessilHelper.TryCreateField(typeDefinition, FieldName, GetOrImportTypeReference(typeDefinition.Module, FieldType), out var fieldDefinition);
+        var didCreate = CessilHelper.TryCreateField(typeDefinition, FieldName, GetOrImportTypeReference(typeDefinition.Module, FieldType), 
+            out var fieldDefinition, IsPublic ? FieldAttributes.Public : FieldAttributes.Private);
         if (didCreate)
             memberDefinition = fieldDefinition;
         return didCreate;

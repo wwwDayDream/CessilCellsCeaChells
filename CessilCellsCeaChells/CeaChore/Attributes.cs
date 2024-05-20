@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace CessilCellsCeaChells.CeaChore;
 
 public class RequiresFieldAttribute : RequiresAttribute {
-    [UsedImplicitly] public RequiresFieldAttribute(Type targetType, string fieldName, Type fieldType) {}
+    [UsedImplicitly] public RequiresFieldAttribute(Type targetType, string fieldName, Type fieldType, bool isPublic = false) {}
 }
 
 public class RequiresPropertyAttribute : RequiresAttribute {
