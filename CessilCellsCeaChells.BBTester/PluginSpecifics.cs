@@ -37,6 +37,9 @@ using TargetEnum = PickerType;
 #elif Valheim
 using TargetType = Player;
 using TargetEnum = Player.PlacementStatus;
+#elif BoplBattle
+using TargetType = Player;
+using TargetEnum = CauseOfDeath;
 #endif
 
 [assembly: RequiresField(typeof(TargetType), "BB_TestField", typeof(string))]
