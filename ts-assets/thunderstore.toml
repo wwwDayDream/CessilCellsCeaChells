@@ -36,5 +36,5 @@ target = "/BepInEx/patchers/CessilCellsCeaChells/"
 
 [publish]
 communities = [ "content-warning", "lethal-company", "riskofrain2", "dyson-sphere-program", "last-train-outta-wormtown", 
-    "mechanica", "muck", "enter-the-gungeon", "atomicrops", "potion-craft", "rounds", "valheim" ]
+    "mechanica", "muck", "enter-the-gungeon", "atomicrops", "potion-craft", "rounds", "valheim", "bopl-battle" ]
 categories = [ "libraries" ]
