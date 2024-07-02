@@ -11,7 +11,7 @@
 Allows installed plugins to request creation of Fields, Properties, Methods, and more in Managed DLLs.
 
 ### Technical Jargon
-A BepInEx 5 preload patcher that scans all installed plugins for assembly attributes that inform us of any desired Fields, Properties, Methods, and more to inject on the `/Game_Data/Managed/` DLLs.
+CessilCellsCeaChells is a BepInEx 5 preload patcher that operates by scanning all installed plugins for specific assembly attributes. These attributes provide instructions for the patcher to check for the existence of, and create if necessary, various fields, methods, properties, and enums within the game's managed DLLs located in the `/Game_Data/Managed/` directory. 
 
 ### Usage & Documentation
 The wiki contains a [Getting Started](https://github.com/wwwDayDream/CessilCellsCeaChells/wiki) section as well as usages of assembly attributes.
